@@ -1,0 +1,28 @@
+* {
+  margin: auto;
+  transition: 1s;
+  font-family: 'Handwriting';
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover, img:hover {
+  cursor: url('../assets/cursors/hand_point.png'), pointer;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  /* background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit; */
+  background: url(../assets/Tasty\ Tutor\ Game\ Homepage.png) repeat fixed center;
+  background-size: 25%;
+  cursor: url('../assets/cursors/pointer_toon_a.png'), crosshair;
+}
+
+@font-face {
+  font-family: 'Handwriting';
+  src: url(../assets/Handwriting\ \(The\ Code\ Dose\).ttf);
+}
