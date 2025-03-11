@@ -32,10 +32,10 @@ h1, h2{
   text-shadow: 2px 2px #fff597, -2px -2px #fff597;
 }
 h1{
-  font-size = 10vw;
+  font-size : 10vw;
 }
 h2{
-  font-size = 5vw;
+  font-size : 5vw;
 }
 #container{
   display: flex;
