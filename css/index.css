@@ -1,12 +1,3 @@
-#pauseMusic {
-  height: 50px;
-  margin-top: 2vh;
-  margin-left: 2vh;
-  background-color: black;
-  border-radius: 30%;
-  padding: 0.5vw;
-}
-
 #container {
   height: 75vh;
   display: flex;
@@ -19,7 +10,7 @@
 h1, h2 {
   margin: 0;
   text-align: center;
-  text-shadow: 2px 2px #fff597, -2px -2px #fff597;
+  text-shadow: 1px 1px #fff597, -2px -2px #fff597, 4px 5px #fff597;
 }
 
 h1 {
