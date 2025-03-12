@@ -4,45 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasty Tutor - Cooking Game</title>
-    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/game.css">
 </head>
 <body>
-    <div id="game-background"> 
-        <header>
-            <img src="../assets/music.png" id="pauseMusic">
-            <a id="backHome" href="index.html">Back</a>
-        </header>
-        
-        <div id="account-setup" class="container">
-            <h1>Create an Account</h1>
+    <!-- Music Toggle -->
+    <img src="../assets/music.png" id="music-button" alt="Music">
+
+    <!-- Back Button -->
+    <a id="back-button" href="index.html">⬅ Back</a>
+
+    <div id="game-background">
+        <!-- Create Account Form -->
+        <div id="account-form">
+            <h2>Create an Account</h2>
             <p>Start your cooking journey by creating an account!</p>
-            <input type="text" id="username" placeholder="Enter your name">
-            <button id="create-account">Create Account</button>
+            <form id="create-account-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email (must contain @)" required>
+                <input type="date" id="dob" required>
+                <button type="submit">Create Account</button>
+            </form>
         </div>
-        
-        <div id="game-area" class="hidden">
-            <h1>🍳 Tasty Tutor - Cooking Game</h1>
-            <p>Welcome to Tasty Tutor, <span id="player-name"></span>! Learn to cook delicious meals step by step.</p>
-            <button id="start-game">Start Cooking</button>
-            
+
+        <!-- Ingredient Selection (Hidden Initially) -->
+        <div id="ingredient-selection" class="hidden">
             <h2>Select Ingredients</h2>
-            <div id="ingredients">
-                <img src="../assets/egg.png" class="draggable" draggable="true" id="egg">
-                <img src="../assets/flour.png" class="draggable" draggable="true" id="flour">
-                <img src="../assets/milk.png" class="draggable" draggable="true" id="milk">
+            <p>Choose the ingredients for your recipe:</p>
+            <div class="ingredients">
+                <img src="../assets/egg.png" class="ingredient" alt="Egg">
+                <img src="../assets/milk.png" class="ingredient" alt="Milk">
+                <img src="../assets/flour.png" class="ingredient" alt="Flour">
+                <img src="../assets/sugar.png" class="ingredient" alt="Sugar">
             </div>
-            
-            <h2>Cooking Station</h2>
-            <div id="cooking-station">
-                <div id="bowl" class="dropzone">Drop ingredients here</div>
-            </div>
-            
-            <h2>Timer</h2>
-            <p id="timer">Time left: 10s</p>
-            <button id="start-timer">Start Cooking</button>
+            <button id="start-cooking">Start Cooking</button>
         </div>
     </div>
+
+    <script>
+        document.getElementById("create-account-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let email = document.getElementById("email").value;
+            if (!email.includes("@")) {
+                alert("Invalid email! Please enter a valid email.");
+                return;
+            }
+            document.getElementById("account-form").classList.add("hidden");
+            document.getElementById("ingredient-selection").classList.remove("hidden");
+        });
+    </script>
 </body>
-<script src="../js/main.js"></script>
 </html>
