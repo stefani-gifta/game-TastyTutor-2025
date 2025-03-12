@@ -8,34 +8,30 @@
     <link rel="stylesheet" href="../css/game.css">
 </head>
 <body>
-    <img src="../assets/music.png" id="pauseMusic">
-    <a id="backHome" href="index.html">Back</a>
-    
-    <div id="game-background"> <!-- for the transparent background -->
-        <div class="container">
-            <h1>🍳 Tasty Tutor - Cooking Game</h1>
-            <p>Welcome to Tasty Tutor! Learn to cook delicious meals step by step.</p>
-            <button id="start-game">Start Cooking</button>
-        </div>
-        
+    <div id="game-background">
+        <h1>Tasty Tutor - Cooking Game</h1>
+        <p>Learn to cook delicious meals step by step.</p>
+        <button id="start-game">Start Cooking</button>
+
         <div id="game-area" class="hidden">
             <h2>Select Ingredients</h2>
             <div id="ingredients">
-                <img src="" class="draggable" draggable="true" id="egg">
-                <img src="" class="draggable" draggable="true" id="flour">
-                <img src="" class="draggable" draggable="true" id="milk">
+                <img src="../assets/egg.png" class="draggable" draggable="true" id="egg" alt="Egg">
+                <img src="../assets/flour.png" class="draggable" draggable="true" id="flour" alt="Flour">
+                <img src="../assets/milk.png" class="draggable" draggable="true" id="milk" alt="Milk">
             </div>
-            
+
             <h2>Cooking Station</h2>
             <div id="cooking-station">
                 <div id="bowl" class="dropzone">Drop ingredients here</div>
             </div>
-            
+
             <h2>Timer</h2>
             <p id="timer">Time left: 10s</p>
             <button id="start-timer">Start Cooking</button>
         </div>
     </div>
+
+    <script src="../js/main.js"></script>
 </body>
-<script src="../js/main.js"></script>
 </html>
