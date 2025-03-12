@@ -10,7 +10,10 @@
 h1, h2 {
   margin: 0;
   text-align: center;
-  text-shadow: 1px 1px #fff597, -2px -2px #fff597, 4px 5px #fff597;
+  text-shadow: 3px 0 #fff597,
+              -3px 0 #fff597,
+              0 2px #fff597,
+              0 -2px #fff597;
 }
 
 h1 {
@@ -30,7 +33,7 @@ h2 {
 .click-btn {
   color: #b85d39;
   font-size: 60px;
-  background-color: #ffecae;
+  background-color: #fff597;
   border-radius: 5px;
   display: flex;
   width: 200px;
@@ -40,7 +43,7 @@ h2 {
 }
 
 .click-btn:hover {
-  border: 3px dashed #ffecae;
+  border: 3px dashed #fff597;
   border-radius: 10px;
   box-shadow: inset 5px 5px 7px #b85d39, inset -5px -5px 7px #b85d39;
 }
