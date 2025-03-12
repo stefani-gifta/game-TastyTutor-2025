@@ -14,28 +14,18 @@ body {
   height: 100vh;
 }
 
-#pauseMusic {
-  height: 50px;
-  margin-top: 2vh;
-  margin-left: 2vh;
-  background-color: rgb(230, 230, 230);
-  box-shadow:
-    inset -1px -3px 5px 1px rgb(134, 132, 132), /* bottom right */
-    inset 1px -3px 5px 1px rgb(134, 132, 132) /* left right */;
-  border-radius: 30%;
-  padding: 0.5vw;
+#music-button {
   position: absolute;
-  z-index: 1001;
-  transition: 0s;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 }
 
-#pauseMusic:hover {
-  opacity: 1;
-  box-shadow:
-    inset 3px 3px 5px rgb(134, 132, 132),
-    inset -3px -3px 5px rgb(255, 255, 255),
-    inset -3px 3px 5px rgb(134, 132, 132),
-    inset 3px -3px 5px rgb(134, 132, 132);
+#music-button:hover {
+  transform: scale(1.1);
 }
 
 #back-button {
