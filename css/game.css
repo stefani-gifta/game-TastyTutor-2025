@@ -3,10 +3,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-image: url('../assets/background.png'); /* Make sure the image path is correct */
+  background-image: url(../assets/Tasty\ Tutor\ Game\ Homepage.png) repeat fixed center;; /* Make sure the image path is correct */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Prevents background from zooming */
   display: flex;
   justify-content: center;
   align-items: center;
