@@ -1,102 +1,105 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
+/* General Styling */
 body {
-    background-image: url('../assets/bg-pattern.png'); /* Sesuaikan dengan background yang lebih menarik */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8e8d2;
+  text-align: center;
 }
 
 #game-background {
-    width: 90%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../assets/background-pattern.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
 }
 
 h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-h1::before {
-    content: '🍳';
-    font-size: 2.5rem;
+  font-size: 3rem;
+  color: #703b09;
 }
 
 h2 {
-    font-size: 1.5rem;
-    color: #555;
-    margin-top: 15px;
+  font-size: 2rem;
+  color: #703b09;
+  margin-top: 20px;
 }
 
 p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #4a2c15;
+  margin-bottom: 20px;
 }
 
 button {
-    background-color: #ff914d;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+  background-color: #ff9f1c;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-    background-color: #ff6f31;
+  background-color: #e07b00;
 }
 
-#ingredients img {
-    width: 60px;
-    height: auto;
-    margin: 10px;
-    cursor: grab;
+/* Ingredient Selection */
+#ingredients {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
 }
 
+.draggable {
+  width: 80px;
+  height: 80px;
+  cursor: grab;
+}
+
+/* Cooking Station */
 #cooking-station {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff8e1;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
 }
 
 .dropzone {
-    width: 200px;
-    height: 100px;
-    background: #fff0db;
-    border: 2px dashed #ff914d;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    color: #444;
-    transition: 0.3s;
+  width: 200px;
+  height: 100px;
+  border: 2px dashed #703b09;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #703b09;
 }
 
-.dropzone:hover {
-    background: #ffdab9;
+/* Timer Section */
+#timer {
+  font-size: 1.5rem;
+  color: #ff5733;
+  font-weight: bold;
 }
