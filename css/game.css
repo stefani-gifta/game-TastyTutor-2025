@@ -1,70 +1,75 @@
-/* General Styling */
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #f8e8d2;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: url('../assets/background.png') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 #game-background {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-image: url('../assets/background-pattern.png');
-  background-size: cover;
-  background-position: center;
+  background-color: rgba(232, 191, 155, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  position: absolute;
-  top: 0;
+.container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+  color: #4a2e1b;
+  text-align: center;
 }
 
 h1 {
   font-size: 3rem;
-  color: #703b09;
 }
 
 h2 {
   font-size: 2rem;
-  color: #703b09;
-  margin-top: 20px;
-}
-
-p {
-  font-size: 1.2rem;
-  color: #4a2c15;
-  margin-bottom: 20px;
 }
 
 button {
-  background-color: #ff9f1c;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
+  background-color: #ff914d;
   color: white;
-  border-radius: 8px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background-color: #e07b00;
+  background-color: #ff7b2f;
 }
 
-/* Ingredient Selection */
+input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #ff914d;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 80%;
+  text-align: center;
+}
+
 #ingredients {
   display: flex;
-  gap: 15px;
   justify-content: center;
+  gap: 20px;
   margin: 20px 0;
 }
 
@@ -74,32 +79,30 @@ button:hover {
   cursor: grab;
 }
 
-/* Cooking Station */
 #cooking-station {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff8e1;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  height: 150px;
+  background: rgba(255, 245, 230, 0.8);
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .dropzone {
-  width: 200px;
+  width: 80%;
   height: 100px;
-  border: 2px dashed #703b09;
+  background: #ffe6cc;
+  border: 2px dashed #ff914d;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  color: #703b09;
+  color: #4a2e1b;
 }
 
-/* Timer Section */
-#timer {
-  font-size: 1.5rem;
-  color: #ff5733;
-  font-weight: bold;
+.hidden {
+  display: none;
 }
