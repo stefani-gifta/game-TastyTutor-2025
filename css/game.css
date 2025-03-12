@@ -15,82 +15,108 @@ body {
   height: 100vh;
 }
 
-/* Music Icon */
-.music-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
+/* Music Button */
+#music-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  cursor: pointer;
 }
 
 /* Back Button */
-.back-button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: #ff8c42;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+#back-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  background: #ff7b54;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
 
-.back-button:hover {
-    background-color: #e6733b;
+/* Account Creation Form */
+#account-form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Container */
-.form-container {
-    background: rgba(255, 255, 255, 0.9); /* Slight transparency for aesthetic */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 350px;
-    text-align: center;
+#account-form h2 {
+  margin: 0 0 10px;
 }
 
-/* Form Title */
-.form-container h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
+#account-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-/* Form Description */
-.form-container p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
+#account-form button {
+  width: 100%;
+  background: #ff7b54;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-/* Input Fields */
-.input-field {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
+#account-form button:hover {
+  background: #ff5722;
 }
 
-/* Create Account Button */
-.create-account-btn {
-    width: 100%;
-    background-color: #ff8c42;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+/* Ingredient Selection */
+.hidden {
+  display: none;
 }
 
-.create-account-btn:hover {
-    background-color: #e6733b;
+#ingredient-selection {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 400px;
+}
+
+.ingredients {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ingredient {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ingredient:hover {
+  transform: scale(1.1);
+}
+
+/* Start Cooking Button */
+#start-cooking {
+  margin-top: 10px;
+  background: #ff7b54;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#start-cooking:hover {
+  background: #ff5722;
 }
