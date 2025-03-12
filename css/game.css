@@ -1,12 +1,13 @@
+/* General Page Styling */
 body {
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif; /* Modern font */
   margin: 0;
   padding: 0;
-  background-image: url('../assets/Tasty\ Tutor\ Game\ Homepage.png'); 
-  background-size: contain; /* Prevents zooming */
-  background-repeat: no-repeat;
+  background-image: url('../assets/Tasty\ Tutor\ Game\ Homepage.png'); /* Change to your image */
+  background-size: 250px 250px; /* Ensures seamless tiling */
+  background-repeat: repeat; /* Repeats the pattern */
   background-position: center;
-  background-attachment: fixed; 
+  background-attachment: fixed; /* Keeps background still while scrolling */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,76 +15,82 @@ body {
   height: 100vh;
 }
 
+/* Music Icon */
 .music-icon {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
 }
 
+/* Back Button */
 .back-button {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background-color: #ff8c42;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: #ff8c42;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .back-button:hover {
-  background-color: #e6733b;
+    background-color: #e6733b;
 }
 
-
+/* Form Container */
 .form-container {
-  background: rgba(255, 255, 255, 0.9); /* Slight transparency for aesthetic */
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency for aesthetic */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
 }
 
+/* Form Title */
 .form-container h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
 }
 
+/* Form Description */
 .form-container p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
 }
 
+/* Input Fields */
 .input-field {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
 }
 
+/* Create Account Button */
 .create-account-btn {
-  width: 100%;
-  background-color: #ff8c42;
-  color: white;
-  border: none;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+    width: 100%;
+    background-color: #ff8c42;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .create-account-btn:hover {
-  background-color: #e6733b;
+    background-color: #e6733b;
 }
