@@ -31,8 +31,25 @@ body {
   height: 50px;
   margin-top: 2vh;
   margin-left: 2vh;
+  background-color: rgb(230, 230, 230);
+  box-shadow:
+    inset -1px -3px 15px 5px black, /* bottom right */
+    inset 1px -3px 5px 5px black, /* left right */
+    inset 1px 1px 5px 5px white;
+  border-radius: 30%;
+  padding: 0.5vw;
+  position: absolute;
+  z-index: 1001;
+}
+
+#backHome {
+  height: 50px;
+  margin-top: 2vh;
+  margin-left: 500px;
+  margin-right: 2vh;
   background-color: black;
   border-radius: 30%;
   padding: 0.5vw;
   position: absolute;
+  z-index: 1001;
 }
