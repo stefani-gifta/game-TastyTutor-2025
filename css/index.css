@@ -1,5 +1,5 @@
 #container {
-  height: 75vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -29,7 +29,7 @@ h2 {
 
 .click-btn {
   color: #b85d39;
-  font-size: 5vw;
+  font-size: 60px;
   background-color: #ffecae;
   border-radius: 5px;
   display: flex;
