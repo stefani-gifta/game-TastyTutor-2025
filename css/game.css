@@ -14,23 +14,30 @@ body {
   height: 100vh;
 }
 
-/* Music Button */
-#music-button {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 50px;
+#pauseMusic {
   height: 50px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  background-color: rgb(230, 230, 230);
+  box-shadow:
+    inset -1px -3px 5px 1px rgb(134, 132, 132), /* bottom right */
+    inset 1px -3px 5px 1px rgb(134, 132, 132) /* left right */;
+  border-radius: 30%;
+  padding: 0.5vw;
+  position: absolute;
+  z-index: 1001;
+  transition: 0s;
 }
 
-/* Add a hover effect */
-#music-button:hover {
-  transform: scale(1.1);
+#pauseMusic:hover {
+  opacity: 1;
+  box-shadow:
+    inset 3px 3px 5px rgb(134, 132, 132),
+    inset -3px -3px 5px rgb(255, 255, 255),
+    inset -3px 3px 5px rgb(134, 132, 132),
+    inset 3px -3px 5px rgb(134, 132, 132);
 }
 
-/* Back Button */
 #back-button {
   position: absolute;
   bottom: 20px;
@@ -49,7 +56,6 @@ body {
   background: #ff5722;
 }
 
-/* Account Creation Form */
 #account-form {
   background: rgba(255, 255, 255, 0.95);
   padding: 25px;
@@ -90,7 +96,6 @@ body {
   outline: none;
 }
 
-/* Create Account Button */
 #account-form button {
   width: 95%;
   background: #ff7b54;
@@ -108,7 +113,6 @@ body {
   background: #ff5722;
 }
 
-/* Ingredient Selection */
 .hidden {
   display: none;
 }
@@ -140,7 +144,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Start Cooking Button */
 #start-cooking {
   margin-top: 15px;
   background: #ff7b54;
