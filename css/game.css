@@ -1,33 +1,3 @@
-body {
-  font-family: 'Poppins', sans-serif; 
-  margin: 0;
-  padding: 0;
-  background-image: url('../assets/Tasty\ Tutor\ Game\ Homepage.png'); 
-  background-size: 250px 250px; 
-  background-repeat: repeat; 
-  background-position: center;
-  background-attachment: fixed; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-#music-button {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
-#music-button:hover {
-  transform: scale(1.1);
-}
-
 #back-button {
   position: absolute;
   bottom: 20px;
