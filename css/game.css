@@ -1,150 +1,89 @@
-/* General Styles */
 body {
+  font-family: 'Poppins', sans-serif; 
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background-image: url('../assets/Tasty\ Tutor\ Game\ Homepage.png') repeat fixed center;; /* Make sure the image path is correct */
-  background-size: cover;
+  background-image: url('../assets/Tasty\ Tutor\ Game\ Homepage.png'); 
+  background-size: contain; /* Prevents zooming */
+  background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Music Button */
-#music-button {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 40px;
-  cursor: pointer;
-}
-
-/* Back Button */
-#back-button {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 14px;
-  color: white;
-  text-decoration: none;
-  background: #ff7b54;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-#back-button:hover {
-  background: #ff5722;
-}
-
-/* Account Creation Form */
-#account-form {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  width: 380px;
-  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
+  background-attachment: fixed; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(10px); /* Adds slight glass effect */
+  justify-content: center;
+  height: 100vh;
 }
 
-#account-form h2 {
-  margin-bottom: 5px;
-  font-size: 22px;
-  font-weight: bold;
+.music-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.back-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #ff8c42;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  background-color: #e6733b;
+}
+
+
+.form-container {
+  background: rgba(255, 255, 255, 0.9); /* Slight transparency for aesthetic */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
   color: #333;
 }
 
-#account-form p {
+.form-container p {
   font-size: 14px;
   color: #666;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
   margin-bottom: 15px;
-}
-
-#account-form input {
-  width: 90%;
-  padding: 12px;
-  margin: 6px 0;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
-#account-form input:focus {
-  border-color: #ff7b54;
-  outline: none;
-}
-
-/* Create Account Button */
-#account-form button {
-  width: 95%;
-  background: #ff7b54;
+.create-account-btn {
+  width: 100%;
+  background-color: #ff8c42;
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 8px;
   font-size: 16px;
-  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-#account-form button:hover {
-  background: #ff5722;
-}
-
-/* Ingredient Selection */
-.hidden {
-  display: none;
-}
-
-#ingredient-selection {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  width: 400px;
-  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.ingredients {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.ingredient {
-  width: 65px;
-  height: 65px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.ingredient:hover {
-  transform: scale(1.1);
-}
-
-/* Start Cooking Button */
-#start-cooking {
-  margin-top: 15px;
-  background: #ff7b54;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#start-cooking:hover {
-  background: #ff5722;
+.create-account-btn:hover {
+  background-color: #e6733b;
 }
