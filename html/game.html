@@ -8,50 +8,43 @@
     <link rel="stylesheet" href="../css/game.css">
 </head>
 <body>
-    <img src="../assets/music.png" id="pauseMusic">
+    <img src="../assets/music.png" id="pauseMusic" hidden>
+    
+    <div id="container">
+        <!-- Back Button -->
+        <a id="back-button" class="button" href="index.html">Home</a>
 
-    <!-- Back Button -->
-    <a id="back-button" href="index.html">⬅ Back</a>
-
-    <div id="game-background">
-        <!-- Create Account Form -->
-        <div id="account-form">
-            <h2>Create an Account</h2>
-            <p>Start your cooking journey by creating an account!</p>
-            <form id="create-account-form">
-                <input type="text" id="name" placeholder="Full Name" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="date" id="dob" required>
-                <button type="submit">Create Account</button>
-            </form>
-        </div>
-
-        <!-- Ingredient Selection (Hidden Initially) -->
-        <div id="ingredient-selection" class="hidden">
-            <h2>Select Ingredients</h2>
-            <p>Choose the ingredients for your recipe:</p>
-            <div class="ingredients">
-                <img src="../assets/egg.png" class="ingredient" alt="Egg">
-                <img src="../assets/milk.png" class="ingredient" alt="Milk">
-                <img src="../assets/flour.png" class="ingredient" alt="Flour">
-                <img src="../assets/sugar.png" class="ingredient" alt="Sugar">
+        <div id="game-background">
+            <!-- Create Account Form -->
+            <div id="account-form" style="display: none">
+                <h2>Create an Account</h2>
+                <p>Start your cooking journey by creating an account!</p>
+                <form id="create-account-form">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="date" id="dob" required>
+                    <button type="submit">Create Account</button>
+                </form>
             </div>
-            <button id="start-cooking">Start Cooking</button>
+
+            <!-- recipe Selection (Hidden Initially) -->
+            <div id="recipe-selection">
+                <h2>Select recipes</h2>
+                <p>Choose the recipes for your recipe:</p>
+                <div class="recipes">
+                    <!-- <img src="../assets/egg.png" class="recipe" alt="Egg">
+                    <img src="../assets/milk.png" class="recipe" alt="Milk">
+                    <img src="../assets/flour.png" class="recipe" alt="Flour">
+                    <img src="../assets/sugar.png" class="recipe" alt="Sugar"> -->
+                </div>
+                <button id="start-cooking">Start Cooking</button>
+            </div>
         </div>
     </div>
 
-    <script>
-        document.getElementById("create-account-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let email = document.getElementById("email").value;
-            if (!email.includes("@")) {
-                alert("Invalid email! Please enter a valid email.");
-                return;
-            }
-            document.getElementById("account-form").classList.add("hidden");
-            document.getElementById("ingredient-selection").classList.remove("hidden");
-        });
-    </script>
+    <!-- JavaScript code moved to game.js -->
+
 </body>
 <script src="../js/main.js"></script>
+<script src="../js/game.js"></script>
 </html>

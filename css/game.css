@@ -2,18 +2,19 @@
   position: absolute;
   bottom: 20px;
   left: 20px;
-  font-size: 14px;
-  color: white;
-  text-decoration: none;
-  background: #ff7b54;
-  padding: 10px 15px;
+  font-size: 25px;
   border-radius: 5px;
-  font-weight: bold;
-  transition: 0.3s;
+  padding: 0 5px 10px 5px;
 }
 
 #back-button:hover {
-  background: #ff5722;
+  padding: 0 5px 5px 5px;
+}
+
+#back-button::before {
+  content: "⬅";
+  font-size: 20px;
+  padding: 0 5px 0 0;
 }
 
 #account-form {
@@ -77,7 +78,7 @@
   display: none;
 }
 
-#ingredient-selection {
+#recipe-selection {
   background: rgba(255, 255, 255, 0.95);
   padding: 25px;
   border-radius: 12px;
@@ -86,21 +87,21 @@
   box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.ingredients {
+.recipes {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
 }
 
-.ingredient {
+.recipe {
   width: 65px;
   height: 65px;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
-.ingredient:hover {
+.recipe:hover {
   transform: scale(1.1);
 }
 

@@ -30,7 +30,7 @@ h2 {
   margin-top: 5vh;
 }
 
-.click-btn {
+.start-btn {
   color: #b85d39;
   font-size: 60px;
   background-color: #fff597;
@@ -42,8 +42,7 @@ h2 {
   box-shadow: inset 3px 3px 5px #b85d39, inset -3px -3px 5px #b85d39;
 }
 
-.click-btn:hover {
-  border: 3px dashed #fff597;
+.start-btn:hover {
   border-radius: 10px;
   box-shadow: inset 5px 5px 7px #b85d39, inset -5px -5px 7px #b85d39;
 }
