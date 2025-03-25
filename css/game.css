@@ -19,31 +19,35 @@
 
 #recipe-selection {
   background: rgba(255, 255, 255, 0.95);
-  padding: 25px;
   border-radius: 12px;
-  text-align: center;
   width: 50vw;
   height: 50vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .recipes {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 .recipe {
-  width: 65px;
-  height: 65px;
+  width: 7vh;
+  height: 7vh;
   cursor: url('../assets/cursors/hand_point.png'), pointer;
   transition: transform 0.2s;
+  opacity: 0.7;
 }
 
 .recipe:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  opacity: 1;
 }
 
 #start-cooking {
@@ -51,12 +55,12 @@
   background-color: #ffcd28;
   padding: 12px;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 2.5vh;
   cursor: url('../assets/cursors/hand_point.png'), pointer;
   transition: 0.3s;
 }
 
 #start-cooking:hover {
-  color: white;
-  background-color: #b85d39cb;
+  color: #ffcd28;
+  background-color: #815b0a;
 }
