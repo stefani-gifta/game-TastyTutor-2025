@@ -70,3 +70,28 @@
   color: #ffcd28;
   background-color: #815b0a;
 }
+
+
+.ingredients {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ingredient {
+  width: 10vh;
+  height: 10vh;
+  opacity: 0.7;
+  cursor: pointer;
+  border: 3px dashed transparent;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.ingredient.selected {
+  opacity: 1;
+  border-color: #ffcd28;
+  transform: scale(1.1);
+}
