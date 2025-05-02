@@ -46,8 +46,9 @@
 }
 
 .recipe:hover {
-  transform: scale(1.2);
+  transform: scale(1.5);
   opacity: 1;
+  background-color: #bebebe;
 }
 
 #start-cooking {
