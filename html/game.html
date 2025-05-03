@@ -50,4 +50,85 @@
 </html>
 
 
+       <!-- Game Area -->
+       <div id="game-area">
+        <h2 id="recipe-title"></h2>
+        <div id="ingredient-list"></div>
+        <div id="score-timer">
+            <div>Score: <span id="score">0</span></div>
+            <div>Time: <span id="timer">30</span>s</div>
+        </div>
+        <p>Select the correct ingredients!</p>
+    </div>
+</div>
+</div>
 
+<script>
+const recipes = {
+    "Hotdog": ["bread", "sausage", "lettuce", "tomato"],
+    "Cereal": ["milk", "cereal"],
+    "Taco": ["tortilla", "beef", "cheese"],
+    "Onigiri": ["rice", "nori", "salmon"],
+    "Cookie": ["flour", "sugar", "egg", "chocolate"]
+};
+
+let selectedRecipe = null;
+let score = 0;
+let timeLeft = 30;
+let gameInterval = null;
+
+document.querySelectorAll(".recipe").forEach(item => {
+    item.addEventListener("click", () => {
+        document.querySelectorAll(".recipe").forEach(el => el.style.opacity = 0.7);
+        item.style.opacity = 1;
+        selectedRecipe = item.getAttribute("data-name");
+    });
+});
+
+document.getElementById("start-cooking").addEventListener("click", () => {
+    if (!selectedRecipe) return alert("Please select a recipe!");
+
+    document.getElementById("recipe-selection").style.display = "none";
+    document.getElementById("game-area").style.display = "flex";
+    document.getElementById("recipe-title").textContent = selectedRecipe;
+
+    const ingredientList = document.getElementById("ingredient-list");
+    ingredientList.innerHTML = "";
+    const allIngredients = ["bread", "sausage", "lettuce", "tomato", "milk", "cereal", "tortilla", "beef", "cheese", "rice", "nori", "salmon", "flour", "sugar", "egg", "chocolate"];
+    allIngredients.forEach(ing => {
+        const img = document.createElement("img");
+        img.src = `../assets/ingredients/${ing}.png`;
+        img.setAttribute("data-name", ing);
+        img.addEventListener("click", () => handleIngredientClick(ing));
+        ingredientList.appendChild(img);
+    });
+
+    score = 0;
+    timeLeft = 30;
+    document.getElementById("score").textContent = score;
+    document.getElementById("timer").textContent = timeLeft;
+
+    gameInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(gameInterval);
+            alert("Time's up! Your score: " + score);
+            location.reload();
+        }
+    }, 1000);
+});
+
+function handleIngredientClick(name) {
+    if (!selectedRecipe) return;
+    const correctIngredients = recipes[selectedRecipe];
+    if (correctIngredients.includes(name)) {
+        score += 10;
+    } else {
+        score -= 5;
+    }
+    document.getElementById("score").textContent = score;
+}
+</script>
+</body>
+</html>

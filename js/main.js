@@ -52,3 +52,4 @@ window.addEventListener("popstate", function (event) {
     .then(response => response.text())
     .then(data => (contentDiv.innerHTML = data));
 });
+
