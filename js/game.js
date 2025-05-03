@@ -26,59 +26,39 @@ for (let i = 0; i < recipe.length; i++) {
 
 
 
-const recipes = {
-    cereal: ["milk", "cereal"],
-    onigiri: ["rice", "nori", "salmon"],
-    hotdog: ["bread", "sausage", "lettuce", "tomato"],
-    taco: ["tortilla", "beef", "cheese"],
-    cookie: ["flour", "sugar", "egg", "chocolate"]
-  };
+function showGameArea() {
+    const gameBackground = document.getElementById('game-background');
+    
+    // Hide recipe selection so it doesn't clutter
+    document.getElementById('recipe-container').style.display = 'none';
+    document.getElementById('start-cooking').style.display = 'none';
   
-  const allIngredients = [
-    "milk", "cereal", "rice", "nori", "salmon",
-    "bread", "sausage", "lettuce", "tomato",
-    "tortilla", "beef", "cheese",
-    "flour", "sugar", "egg", "chocolate"
-  ];
+    // Create new elements for the game UI
+    const title = document.createElement('h2');
+    title.id = 'recipe-title';
+    title.textContent = selectedRecipe.toUpperCase();
   
-  let selectedRecipe = null;
-  let score = 0;
-  let timeLeft = 30;
-  let gameInterval = null;
+    const ingredientList = document.createElement('div');
+    ingredientList.id = 'ingredient-list';
+    ingredientList.classList.add('recipes');
   
-  // Recipe selection logic
-  const recipeImages = document.querySelectorAll('.recipe');
-  recipeImages.forEach(img => {
-    img.addEventListener('click', () => {
-      recipeImages.forEach(i => i.classList.remove('selected'));
-      img.classList.add('selected');
-      selectedRecipe = img.getAttribute('data-name');
-    });
-  });
-  
-  document.getElementById('start-cooking').addEventListener('click', () => {
-    if (!selectedRecipe) {
-      alert('Please select a recipe first!');
-      return;
-    }
-  
-    // Show game area
-    showGameArea();
-  });
-  
-  function showGameArea() {
-    document.getElementById('game-background').innerHTML = `
-      <h2 id="recipe-title">${selectedRecipe.toUpperCase()}</h2>
-      <div id="ingredient-list" class="recipes"></div>
-      <div id="score-timer">
-        <div>Score: <span id="score">0</span></div>
-        <div>Time: <span id="timer">30</span>s</div>
-      </div>
-      <p>Select the correct ingredients!</p>
+    const scoreTimer = document.createElement('div');
+    scoreTimer.id = 'score-timer';
+    scoreTimer.innerHTML = `
+      <div>Score: <span id="score">0</span></div>
+      <div>Time: <span id="timer">30</span>s</div>
     `;
   
-    // Show all ingredients
-    const ingredientList = document.getElementById("ingredient-list");
+    const instructions = document.createElement('p');
+    instructions.textContent = "Select the correct ingredients!";
+  
+    // Append new elements
+    gameBackground.appendChild(title);
+    gameBackground.appendChild(ingredientList);
+    gameBackground.appendChild(scoreTimer);
+    gameBackground.appendChild(instructions);
+  
+    // Load ingredients
     allIngredients.forEach(ing => {
       const img = document.createElement("img");
       img.src = `../assets/ingredients/${ing}.png`;
@@ -88,12 +68,12 @@ const recipes = {
       ingredientList.appendChild(img);
     });
   
+    // Initialize game
     score = 0;
     timeLeft = 30;
     document.getElementById("score").textContent = score;
     document.getElementById("timer").textContent = timeLeft;
   
-    // Start timer
     gameInterval = setInterval(() => {
       timeLeft--;
       document.getElementById("timer").textContent = timeLeft;
@@ -103,16 +83,5 @@ const recipes = {
         location.reload(); // restart
       }
     }, 1000);
-  }
-  
-  function handleIngredientClick(name) {
-    if (!selectedRecipe) return;
-    const correctIngredients = recipes[selectedRecipe];
-    if (correctIngredients.includes(name)) {
-      score += 10;
-    } else {
-      score -= 5;
-    }
-    document.getElementById("score").textContent = score;
   }
   
