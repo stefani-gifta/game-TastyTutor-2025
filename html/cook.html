@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cooking Time</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <style>
+    #cook-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px;
+    }
+
+    #recipe-img {
+      max-height: 40vh;
+      object-fit: contain;
+    }
+
+    #ingredients-box {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      background-color: #fff597;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+      width: 300px;
+    }
+
+    #ingredients-box h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="cook-container">
+    <img id="recipe-img" src="" alt="Recipe Image">
+    <div id="ingredients-box">
+      <h3>Ingredients</h3>
+      <ul id="ingredient-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    const recipeName = localStorage.getItem("selectedRecipe");
+    const img = document.getElementById("recipe-img");
+    const list = document.getElementById("ingredient-list");
+
+    const ingredientsMap = {
+      cereal: ["Cereal", "Milk", "Bowl", "Spoon"],
+      onigiri: ["Rice", "Seaweed", "Salt", "Filling"],
+      hotdog: ["Hotdog bun", "Sausage", "Ketchup", "Mustard"],
+      taco: ["Taco shell", "Meat", "Lettuce", "Cheese"],
+      cookie: ["Flour", "Eggs", "Sugar", "Chocolate chips"]
+    };
+
+    if (recipeName) {
+      img.src = `../assets/${recipeName}.png`;
+      img.alt = `${recipeName} image`;
+      const ingredients = ingredientsMap[recipeName] || [];
+      ingredients.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    } else {
+      img.alt = "No recipe selected";
+    }
+  </script>
+</body>
+</html>
+
+
+
+
