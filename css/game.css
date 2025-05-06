@@ -53,7 +53,7 @@
 .recipe:active{
   transform: scale(1.4);
   opacity: 1;
-  background-color: #ffcd28;
+  background-color: #ffc16a;
 }
 
 #start-cooking {

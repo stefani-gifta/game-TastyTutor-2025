@@ -14,8 +14,7 @@ if (recipeName) {
     img.src = `../assets/${recipeName}.png`;
     img.alt = `${recipeName} image`;
     const ingredients = ingredientsMap[recipeName] || [];
-    ingredients.forEach(item => {
-    const li = document.createElement("li");
+    ingredients.forEach(item => {const li = document.createElement("li");
     li.textContent = item;
     list.appendChild(li);
   });
