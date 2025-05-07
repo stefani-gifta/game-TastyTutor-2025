@@ -50,10 +50,9 @@
   opacity: 1;
 }
 
-.recipe:active{
-  transform: scale(1.4);
-  opacity: 1;
-  background-color: #ffc16a;
+.recipe.active{
+  transform: scale(1.4) !important;
+  opacity: 1 !important;
 }
 
 #start-cooking {
@@ -70,6 +69,3 @@
   color: #ffcd28;
   background-color: #815b0a;
 }
-
-
-

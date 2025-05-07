@@ -1,28 +1,14 @@
-document.getElementById("create-account-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    document.getElementById("account-form").style.display = "none";
-    document.getElementById("ingredient-selection").style.display = "block";
-    // console.log("Hello world");
+const recipes = document.querySelectorAll(".recipe");
+recipes.forEach(item => {
+  item.addEventListener("click", () => {
+    // If the item is already active, remove the 'active' class
+    if (item.classList.contains("active")) {
+      item.classList.remove("active");
+    } else {
+      // Remove 'active' class from all other items
+      recipes.forEach(el => el.classList.remove("active"));
+      // Add 'active' class to the clicked item
+      item.classList.add("active");
+    }
+  });
 });
-
-const recipe = document.getElementsByClassName("recipe");
-for (let i = 0; i < recipe.length; i++) {
-    recipe[i].addEventListener("click", function () {
-        document.querySelectorAll(".recipe").forEach(item => {
-            item.style.transform = "scale(1)";
-            item.style.opacity = "0.7";
-        });
-        if(recipe[i].style.transform == "scale(1.2)") {
-            recipe[i].style.transform = "scale(1)";
-            recipe[i].style.opacity = "0.7";
-        } else {
-            recipe[i].style.transform = "scale(1.2)";
-            recipe[i].style.opacity = "1";
-            recipe[i].style.transition = "transform 0.3s ease";
-        }
-    });
-}
- 
-
-  
-

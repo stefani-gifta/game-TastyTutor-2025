@@ -9,47 +9,35 @@ document.addEventListener('DOMContentLoaded', _calculateScrollbarWidth, false);
 window.addEventListener('load', _calculateScrollbarWidth);
 
 
-/* Music */
-var music = new Audio('../assets/Lukrembo - Kitchen (freetouse.com).mp3')
-music.play();
-music.addEventListener('ended', function() {
-  this.currentTime = 0;
-  this.play();
-}, false);
-var pauseMusic = document.getElementById("pauseMusic")
-pauseMusic.addEventListener("click", function() {
-  if(music.paused == true) {
-    music.play()
-    pauseMusic.style.opacity = "1"
+const music = document.getElementById("bg-music");
+const pauseMusicBtn = document.getElementById("pauseMusic");
+pauseMusicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    pauseMusicBtn.style.opacity = "1";
   } else {
-    music.pause()
-    pauseMusic.style.opacity = "0.5"
+    music.pause();
+    pauseMusicBtn.style.opacity = "0.5";
   }
-})
-
-
-/* Keep music playing through pages */
-const contentDiv = document.getElementById("container");
-
-document.querySelectorAll(".start-btn, .button").forEach(link => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent full page reload
-    const url = this.getAttribute("href");
-
-    // Fetch content via AJAX
-    fetch(url)
-      .then(response => response.text())
-      .then(data => {
-          contentDiv.innerHTML = data;
-          history.pushState({ path: url }, "", url); // Update URL
-      })
-      .catch(err => console.error("Error loading page:", err));
-  });
 });
 
-window.addEventListener("popstate", function (event) {
-  fetch(location.pathname)
-    .then(response => response.text())
-    .then(data => (contentDiv.innerHTML = data));
-});
+function goToGame() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("gamePage").style.display = "block";
+  document.getElementById("cookPage").style.display = "none";
+}
 
+function goToCook() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "block";
+  // Set dummy recipe image and ingredients for now
+  document.getElementById("recipe-img").src = "../assets/cereal.png";
+  document.getElementById("ingredient-list").innerHTML = "<li>Milk</li><li>Cereal</li>";
+}
+
+function goToHome() {
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "none";
+}

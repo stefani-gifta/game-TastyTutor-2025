@@ -8,40 +8,10 @@
   <link rel="stylesheet" href="../css/game.css">
   <link rel="stylesheet" href="../css/cook.css">
   <link rel="stylesheet" href="../css/index.css">
-  <style>
-    #cook-container {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 30px;
-    }
-
-    #recipe-img {
-      max-height: 40vh;
-      object-fit: contain;
-    }
-
-    #ingredients-box {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      background-color: #fff597;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
-      width: 300px;
-    }
-
-    #ingredients-box h3 {
-      margin-top: 0;
-    }
-  </style>
 </head>
 <body>
   <audio id="bg-music" src="../assets/Lukrembo - Kitchen (freetouse.com).mp3" autoplay loop></audio>
-  <img src="../assets/music.png" id="pauseMusic" style="cursor: pointer; width: 40px; position: fixed; top: 20px; right: 20px; z-index: 1000;">
+  <img src="../assets/music.png" id="pauseMusic">
 
   <div id="container">
     <!-- Home Page -->
@@ -57,17 +27,6 @@
     <div id="gamePage" style="display: none;">
       <a id="back-button" class="button" onclick="goToHome()">Home</a>
       <div id="game-background">
-        <div id="account-form" style="display: none">
-          <h2>Create an Account</h2>
-          <p>Start your cooking journey by creating an account!</p>
-          <form id="create-account-form">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="date" id="dob" required>
-            <button type="submit">Create Account</button>
-          </form>
-        </div>
-
         <div id="recipe-selection">
           <h2>Select a recipe to cook</h2>
           <div class="recipes">
@@ -95,39 +54,8 @@
     </div>
   </div>
 
-  <script>
-    const music = document.getElementById("bg-music");
-    const pauseMusicBtn = document.getElementById("pauseMusic");
-    pauseMusicBtn.addEventListener("click", () => {
-      if (music.paused) {
-        music.play();
-        pauseMusicBtn.style.opacity = "1";
-      } else {
-        music.pause();
-        pauseMusicBtn.style.opacity = "0.5";
-      }
-    });
-
-    function goToGame() {
-      document.getElementById("homePage").style.display = "none";
-      document.getElementById("gamePage").style.display = "block";
-      document.getElementById("cookPage").style.display = "none";
-    }
-
-    function goToCook() {
-      document.getElementById("homePage").style.display = "none";
-      document.getElementById("gamePage").style.display = "none";
-      document.getElementById("cookPage").style.display = "block";
-      // Set dummy recipe image and ingredients for now
-      document.getElementById("recipe-img").src = "../assets/cereal.png";
-      document.getElementById("ingredient-list").innerHTML = "<li>Milk</li><li>Cereal</li>";
-    }
-
-    function goToHome() {
-      document.getElementById("homePage").style.display = "block";
-      document.getElementById("gamePage").style.display = "none";
-      document.getElementById("cookPage").style.display = "none";
-    }
-  </script>
+  <script src="../js/main.js"></script>
+  <script src="../js/game.js"></script>
+  <script src="../js/cook.js"></script>
 </body>
 </html>
