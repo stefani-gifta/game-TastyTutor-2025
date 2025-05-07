@@ -4,6 +4,9 @@ const list = document.getElementById("ingredient-list");
 const stepBox = document.getElementById("step-instruction");
 const stepButton = document.getElementById("next-step-button");
 const stepContainer = document.getElementById("cooking-steps");
+const timerElement = document.getElementById("timer");
+const scoreElement = document.getElementById("score");
+let score = 0;
 
 // Data resep
 const ingredientsMap = {
@@ -47,7 +50,7 @@ const stepsMap = {
   ]
 };
 
-// Tampilkan bahan-bahan resep
+// Display ingredients
 if (recipeName) {
   img.src = `../assets/${recipeName}.png`;
   img.alt = `${recipeName} image`;
@@ -69,22 +72,44 @@ function startCookingGame() {
   stepBox.textContent = currentSteps[stepIndex];
   stepButton.textContent = "Next";
   stepIndex++;
-  startTimer(); // dari enhancedGame.js
-  increaseScore(5); // Bonus awal
+  startTimer(); 
+  increaseScore(5); 
 }
 
 stepButton.addEventListener("click", () => {
   if (stepIndex < currentSteps.length) {
     stepBox.textContent = currentSteps[stepIndex];
-    increaseScore(10);
+    increaseScore(10); 
     stepIndex++;
     if (stepIndex === currentSteps.length) {
       stepButton.textContent = "Finish";
     }
   } else {
-    endGame(); // dari enhancedGame.js
+    endGame();  
   }
 });
 
-// Mulai otomatis saat halaman siap
+function increaseScore(points) {
+  score += points;
+  scoreElement.textContent = `Score: ${score}`;
+}
+
+function startTimer() {
+  let timer = 60; 
+  const interval = setInterval(() => {
+    timer--;
+    timerElement.textContent = `Time: ${timer}s`;
+    if (timer <= 0) {
+      clearInterval(interval);
+      endGame(); 
+    }
+  }, 1000);
+}
+
+function endGame() {
+  stepContainer.style.display = "none";
+  alert(`Game Over! Your score is: ${score}`);
+  goToGame(); 
+}
+
 window.addEventListener("DOMContentLoaded", startCookingGame);

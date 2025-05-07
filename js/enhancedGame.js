@@ -12,3 +12,8 @@ function startTimer() {
     }
   }, 1000);
 }
+
+function endGame() {
+  alert("Time's up! The game is over.");
+  goToHome();
+}
