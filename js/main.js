@@ -11,9 +11,11 @@ window.addEventListener('load', _calculateScrollbarWidth);
 
 const music = document.getElementById("bg-music");
 music.play();
+music.volume = 0.15;
 music.addEventListener('ended', function() {
   this.currentTime = 0;
   this.play();
+  music.volume = 0.15;
 }, false);
 
 const pauseMusicBtn = document.getElementById("pauseMusic");

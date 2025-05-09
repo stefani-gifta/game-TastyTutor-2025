@@ -49,7 +49,7 @@ function showCookingPage(recipe) {
   document.getElementById("timer").textContent = `Time left: ${timeLeft}s`;
   currentRecipe = recipe;
   droppedItems = [];
-    timerInterval = setInterval(() => {
+  timerInterval = setInterval(() => {
     timeLeft--;
     if (timeLeft < 50) {
       score = Math.max(0, Math.floor((timeLeft / 50) * 100));
@@ -85,7 +85,6 @@ function showCookingPage(recipe) {
 
   const dropArea = document.getElementById("drop-area");
   dropArea.textContent = "Drop ingredients here as fast as possible in the correct order";
-  dropArea.
   dropArea.ondragover = allowDrop;
   dropArea.ondrop = drop;
 
@@ -101,14 +100,7 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.src);
-  ev.dataTransfer.setData("ingredient-name", ev.target.alt);
-
-  const dragSound = document.getElementById("drag-sound");
-  if (dragSound) {
-    dragSound.currentTime = 0;
-    dragSound.play();
-  }
+  ev.dataTransfer.setData("text", ev.target.alt);
 }
 
 // Mulai langkah memasak
@@ -148,43 +140,45 @@ function drop(ev) {
     node.style.margin = "10px";
     drop_area.appendChild(node);
 
-    // Optional sound
     const dropSound = document.getElementById("drop-sound");
-    if (dropSound) dropSound.play();
+    dropSound.play();
   }
 
   // Check if all required ingredients are dropped
   const required = ingredients[currentRecipe];
+  console.log(required);
   const allDropped = required.length === droppedItems.length &&
                      required.every(item => droppedItems.includes(item));
+  console.log(droppedItems);
 
   if (allDropped) {
-  const stepContainer = document.getElementById("cooking-steps");
-  const stepText = document.getElementById("step-instruction");
+    console.log("dropped");
+    const stepContainer = document.getElementById("cooking-steps");
+    const stepText = document.getElementById("step-instruction");
 
-  stepContainer.style.display = "none";
-  stepText.textContent = "";
+    stepContainer.style.display = "none";
+    stepText.textContent = "";
 
-  const doneBox = document.createElement("div");
-  doneBox.id = "done-message-box";
+    const doneBox = document.createElement("div");
+    doneBox.id = "done-message-box";
 
-  const message = document.createElement("div");
-  message.textContent = `All done! Your score is ${score}`;
-  message.style.marginBottom = "20px";
+    const message = document.createElement("div");
+    message.textContent = `All done! Your score is ${score}`;
+    message.style.marginBottom = "20px";
 
-  const tryAgainBtn = document.createElement("button");
-  tryAgainBtn.textContent = "Play Again?";
-  tryAgainBtn.className = "btn-style701";
-  tryAgainBtn.onclick = () => {
-    document.getElementById("cookPage").style.display = "none";
-    document.getElementById("gamePage").style.display = "block";
-    doneBox.remove(); // clean up
-  };
+    const tryAgainBtn = document.createElement("button");
+    tryAgainBtn.textContent = "Play Again?";
+    tryAgainBtn.className = "btn-style701";
+    tryAgainBtn.onclick = () => {
+      document.getElementById("cookPage").style.display = "none";
+      document.getElementById("gamePage").style.display = "block";
+      doneBox.remove(); // clean up
+    };
 
-  // reset drop area
-  doneBox.appendChild(message);
-  doneBox.appendChild(tryAgainBtn);
-  document.body.appendChild(doneBox);
+    // reset drop area
+    doneBox.appendChild(message);
+    doneBox.appendChild(tryAgainBtn);
+    document.body.appendChild(doneBox);
   }
 }
 
