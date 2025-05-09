@@ -93,13 +93,17 @@
   line-height: 100px;
 }
 
-
 #drop-area {
-  min-height: 150px;
+  min-height: 50px;
   border: 2px dashed #aaa;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 20px;
   background-color: #fff7e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: normal;
+  padding: 0;
 }
 
 .dropped-item {
