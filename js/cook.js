@@ -13,7 +13,7 @@ function goToHome() {
 // Data resep dan langkah
 const ingredients = {
   cereal: ["Milk", "Cereal", "Bowl"],
-  onigiri: ["Rice", "Seaweed", "Salt"],
+  onigiri: ["Rice", "Nori", "Salt"],
   hotdog: ["Bun", "Sausage", "Ketchup"],
   taco: ["Tortilla", "Meat", "Cheese"],
   cookie: ["Flour", "Egg", "Sugar"]
@@ -53,12 +53,17 @@ function showCookingPage(recipe) {
 
   const list = document.getElementById("ingredient-list");
   list.innerHTML = "";
-  ingredients[recipe].forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.setAttribute("draggable", "true");
-    li.ondragstart = drag;
-    list.appendChild(li);
+  ingredients[recipe].forEach((item, index) => {
+    const img = document.createElement("img");
+    img.src = `../assets/ingredients_${recipe}/${item.toLowerCase()}.png`;
+    img.alt = item;
+    img.id = `ingredient-${index}`;
+    img.draggable = true;
+    img.ondragstart = drag;
+    img.style.width = "50px";
+    img.style.margin = "10px";
+    img.textContent = item;
+    list.appendChild(img);
   });
 
   const dropArea = document.getElementById("drop-area");

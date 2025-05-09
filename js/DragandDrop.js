@@ -48,12 +48,15 @@ function showCookingPage(recipe) {
   
   // Membuat elemen bahan dengan kemampuan drag
   ingredients[recipe].forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    li.id = `ingredient-${index}`;
-    li.draggable = true;
-    li.ondragstart = drag;
-    list.appendChild(li);
+    const img = document.createElement("img");
+    img.src = `../assets/ingredients_${recipe}/${item.toLowerCase()}.png`;
+    img.alt = item;
+    img.id = `ingredient-${index}`;
+    img.draggable = true;
+    img.ondragstart = drag;
+    img.style.width = "80px";
+    img.style.margin = "10px";
+    list.appendChild(img);
   });
 
   // Membuat drop area untuk menampung bahan

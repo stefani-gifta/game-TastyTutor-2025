@@ -1,0 +1,3 @@
+milk: https://www.flaticon.com/free-icon/milk_869664?term=milk&page=1&position=3&origin=search&related_id=869664
+cornflake: https://www.flaticon.com/free-icon/cornflakes_4391619?term=cereal+box&page=1&position=14&origin=search&related_id=4391619
+bowl: https://www.flaticon.com/free-icon/bowl_7284664?term=bowl&page=1&position=4&origin=search&related_id=7284664

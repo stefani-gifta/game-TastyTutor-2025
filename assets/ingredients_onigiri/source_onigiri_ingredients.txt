@@ -1,0 +1,3 @@
+rice: https://www.flaticon.com/free-icon/rice_9873609?term=rice&page=1&position=4&origin=search&related_id=9873609
+seaweed: https://www.flaticon.com/free-icon/nori_4479405?term=nori&page=1&position=2&origin=tag&related_id=4479405
+salt: https://www.flaticon.com/free-icon/salt_8080408?term=salt&page=1&position=7&origin=search&related_id=8080408

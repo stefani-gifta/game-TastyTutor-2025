@@ -37,9 +37,6 @@ function goToCook() {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "block";
-  // Set dummy recipe image and ingredients for now
-  document.getElementById("recipe-img").src = "../assets/cereal.png";
-  document.getElementById("ingredient-list").innerHTML = "<li>Milk</li><li>Cereal</li>";
 }
 
 function goToHome() {
