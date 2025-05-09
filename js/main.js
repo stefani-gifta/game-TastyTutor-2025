@@ -10,9 +10,15 @@ window.addEventListener('load', _calculateScrollbarWidth);
 
 
 const music = document.getElementById("bg-music");
+music.play();
+music.addEventListener('ended', function() {
+  this.currentTime = 0;
+  this.play();
+}, false);
+
 const pauseMusicBtn = document.getElementById("pauseMusic");
 pauseMusicBtn.addEventListener("click", () => {
-  if (music.paused) {
+  if (music.paused == true) {
     music.play();
     pauseMusicBtn.style.opacity = "1";
   } else {
