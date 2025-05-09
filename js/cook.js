@@ -100,9 +100,15 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.textContent);
-}
+  ev.dataTransfer.setData("text", ev.target.src);
+  ev.dataTransfer.setData("ingredient-name", ev.target.alt);
 
+  const dragSound = document.getElementById("drag-sound");
+  if (dragSound) {
+    dragSound.currentTime = 0;
+    dragSound.play();
+  }
+}
 
 // Mulai langkah memasak
 // function startCookingSteps(recipe) {
