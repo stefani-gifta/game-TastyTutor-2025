@@ -1,10 +1,21 @@
 #cook-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 30px;
+  gap: 20px;
+}
+
+#cook-inner {
+  display: flex;
+  flex-direction: row-reverse; /* reverses the horizontal order */
+  gap: 20px;
+}
+
+#cook-inner {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 #recipe-img {
@@ -147,26 +158,46 @@
 }
 
 #done-message-box {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  padding: 30px 50px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  font-size: 2rem;
-  color: #4CAF50;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  animation: fadeInStep 0.6s ease;
+  width: 250px;
 }
 
-.btn-style701 {
-  background-color: #4CAF50;
+#done-message-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 250px;
+}
+
+#done-message-box button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #fff597;
+  color: #b85d39;
   border: none;
-  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* .btn-style701 {
+  background-color: #fff597;
+  border: none;
+  color: #b85d39;
   padding: 12px 24px;
   text-align: center;
   text-decoration: none;
@@ -177,5 +208,5 @@
 }
 
 .btn-style701:hover {
-  background-color: #45a049;
-}
+  background-color: #b85d39;
+} */
