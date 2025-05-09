@@ -19,13 +19,13 @@ const ingredients = {
   cookie: ["Flour", "Egg", "Sugar"]
 };
 
-const steps = {
-  cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
-  onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
-  hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
-  taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
-  cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
-};
+// const steps = {
+//   cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
+//   onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
+//   hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
+//   taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
+//   cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
+// };
 
 let currentRecipe = "";
 let droppedItems = [];
@@ -102,23 +102,76 @@ function drop(ev) {
 }
 
 // Mulai langkah memasak
-function startCookingSteps(recipe) {
+// function startCookingSteps(recipe) {
+//   const stepContainer = document.getElementById("cooking-steps");
+//   const stepText = document.getElementById("step-instruction");
+//   const nextButton = document.getElementById("next-step-button");
+
+//   let stepIndex = 0;
+//   stepText.textContent = steps[recipe][stepIndex];
+//   stepContainer.style.display = "block";
+//   nextButton.disabled = false;
+
+//   nextButton.onclick = () => {
+//     stepIndex++;
+//     if (stepIndex < steps[recipe].length) {
+//       stepText.textContent = steps[recipe][stepIndex];
+//     } else {
+//       stepText.textContent = "Done!";
+//       nextButton.disabled = true;
+//     }
+//   };
+// }
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+
+  if (!droppedItems.includes(data)) {
+    droppedItems.push(data);
+    const node = document.createElement("div");
+    node.textContent = data;
+    node.className = "dropped-item";
+    ev.target.appendChild(node);
+
+    // Optional sound
+    const dropSound = document.getElementById("drop-sound");
+    if (dropSound) dropSound.play();
+  }
+
+  // Check if all required ingredients are dropped
+  const required = ingredients[currentRecipe];
+  const allDropped = required.length === droppedItems.length &&
+                     required.every(item => droppedItems.includes(item));
+
+  if (allDropped) {
   const stepContainer = document.getElementById("cooking-steps");
   const stepText = document.getElementById("step-instruction");
-  const nextButton = document.getElementById("next-step-button");
 
-  let stepIndex = 0;
-  stepText.textContent = steps[recipe][stepIndex];
-  stepContainer.style.display = "block";
-  nextButton.disabled = false;
+  stepContainer.style.display = "none";
+  stepText.textContent = "";
 
-  nextButton.onclick = () => {
-    stepIndex++;
-    if (stepIndex < steps[recipe].length) {
-      stepText.textContent = steps[recipe][stepIndex];
-    } else {
-      stepText.textContent = "Done!";
-      nextButton.disabled = true;
-    }
+  const doneBox = document.createElement("div");
+  doneBox.id = "done-message-box";
+
+  const message = document.createElement("div");
+  message.textContent = "All done!";
+  message.style.marginBottom = "20px";
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.textContent = "Play Again?";
+  tryAgainBtn.className = "btn-style701";
+  tryAgainBtn.onclick = () => {
+    document.getElementById("cookPage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    doneBox.remove(); // clean up
   };
+
+  doneBox.appendChild(message);
+  doneBox.appendChild(tryAgainBtn);
+  document.body.appendChild(doneBox);
+  }
+
+
 }
+const oldBox = document.getElementById("done-message-box");
+if (oldBox) oldBox.remove();
