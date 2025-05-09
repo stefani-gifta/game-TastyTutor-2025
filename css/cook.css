@@ -73,3 +73,11 @@
   background-color: #ffda55;
 }
 
+#drop-area {
+  width: 200px;
+  height: 100px;
+  border: 2px dashed #ccc;
+  margin: 20px;
+  text-align: center;
+  line-height: 100px;
+}
