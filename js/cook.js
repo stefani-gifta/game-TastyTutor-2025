@@ -84,7 +84,8 @@ function showCookingPage(recipe) {
   });
 
   const dropArea = document.getElementById("drop-area");
-  dropArea.innerHTML = "Drop ingredients here as fast as possible in the correct order";
+  dropArea.textContent = "Drop ingredients here as fast as possible in the correct order";
+  dropArea.
   dropArea.ondragover = allowDrop;
   dropArea.ondrop = drop;
 
@@ -103,38 +104,21 @@ function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.textContent);
 }
 
-
-// Mulai langkah memasak
-// function startCookingSteps(recipe) {
-//   const stepContainer = document.getElementById("cooking-steps");
-//   const stepText = document.getElementById("step-instruction");
-//   const nextButton = document.getElementById("next-step-button");
-
-//   let stepIndex = 0;
-//   stepText.textContent = steps[recipe][stepIndex];
-//   stepContainer.style.display = "block";
-//   nextButton.disabled = false;
-
-//   nextButton.onclick = () => {
-//     stepIndex++;
-//     if (stepIndex < steps[recipe].length) {
-//       stepText.textContent = steps[recipe][stepIndex];
-//     } else {
-//       stepText.textContent = "Done!";
-//       nextButton.disabled = true;
-//     }
-//   };
-// }
 function drop(ev) {
   ev.preventDefault();
   const data = ev.dataTransfer.getData("text");
+  const drop_area = document.getElementById("drop-area");
 
   if (!droppedItems.includes(data)) {
+    if (drop_area.textContent.includes("Drop")) {
+      drop_area.textContent = "";
+    }
     droppedItems.push(data);
-    const node = document.createElement("div");
-    node.textContent = data;
-    node.className = "dropped-item";
-    ev.target.appendChild(node);
+    const node = document.createElement("img");
+    node.src = `../assets/ingredients_${currentRecipe}/${data.toLowerCase()}.png`;
+    node.style.width = "30px";
+    node.style.margin = "10px";
+    drop_area.appendChild(node);
 
     // Optional sound
     const dropSound = document.getElementById("drop-sound");
@@ -169,13 +153,13 @@ function drop(ev) {
     doneBox.remove(); // clean up
   };
 
+  // reset drop area
   doneBox.appendChild(message);
   doneBox.appendChild(tryAgainBtn);
   document.body.appendChild(doneBox);
   }
-
-
 }
+
 const oldBox = document.getElementById("done-message-box");
 if (oldBox) oldBox.remove();
 
