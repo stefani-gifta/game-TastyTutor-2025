@@ -1,17 +1,22 @@
-let timer = 60;
-let interval;
+let timerInterval;
+let timeLeft = 60;
+let score = 100
 
 function startTimer() {
   const timerElement = document.getElementById("timer");
+  timer = 60;
+  clearInterval(interval);
   interval = setInterval(() => {
-    timerElement.textContent = `Time left: ${timer}`;
     timer--;
+    timerElement.textContent = `Time left: ${timer}s`;
     if (timer <= 0) {
       clearInterval(interval);
-      endGame();
+      alert("Time's up!");
+      // Optionally: go back to game page
     }
   }, 1000);
 }
+
 
 function endGame() {
   alert("Time's up! The game is over.");

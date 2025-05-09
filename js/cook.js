@@ -2,12 +2,14 @@ function goToGame() {
   document.getElementById("homePage").style.display = "none";
   document.getElementById("gamePage").style.display = "block";
   document.getElementById("cookPage").style.display = "none";
+  clearInterval(timerInterval); // stop the timer if navigating away
 }
 
 function goToHome() {
   document.getElementById("homePage").style.display = "block";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
+  clearInterval(timerInterval); // stop the timer if navigating away
 }
 
 // Data resep dan langkah
@@ -41,9 +43,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Show cook page and populate ingredients
 function showCookingPage(recipe) {
+  clearInterval(timerInterval); // in case it's already running
+  score = 100;
+  timeLeft = 60;
+  document.getElementById("timer").textContent = `Time left: ${timeLeft}s`;
   currentRecipe = recipe;
   droppedItems = [];
-  
+    timerInterval = setInterval(() => {
+    timeLeft--;
+    if (timeLeft < 50) {
+      score = Math.max(0, Math.floor((timeLeft / 50) * 100));
+    }
+    document.getElementById("timer").textContent = `Time left: ${timeLeft}s`;
+    
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      showFailMessage();
+    }
+  }, 1000);
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "block";
 
@@ -81,25 +98,6 @@ function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.textContent);
 }
 
-function drop(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-
-  if (!droppedItems.includes(data)) {
-    droppedItems.push(data);
-    const node = document.createElement("div");
-    node.textContent = data;
-    node.className = "dropped-item";
-    ev.target.appendChild(node);
-  }
-
-  // Cek apakah semua bahan sudah didrop
-  const required = ingredients[currentRecipe];
-  if (droppedItems.length === required.length &&
-      required.every(item => droppedItems.includes(item))) {
-    startCookingSteps(currentRecipe);
-  }
-}
 
 // Mulai langkah memasak
 // function startCookingSteps(recipe) {
@@ -154,7 +152,7 @@ function drop(ev) {
   doneBox.id = "done-message-box";
 
   const message = document.createElement("div");
-  message.textContent = "All done!";
+  message.textContent = `All done! Your score is ${score}`;
   message.style.marginBottom = "20px";
 
   const tryAgainBtn = document.createElement("button");
@@ -175,3 +173,70 @@ function drop(ev) {
 }
 const oldBox = document.getElementById("done-message-box");
 if (oldBox) oldBox.remove();
+
+function showDoneMessage() {
+  const doneBox = document.createElement("div");
+  doneBox.id = "done-message-box";
+
+  const message = document.createElement("div");
+  message.textContent = `All done! Your score is ${score}`;
+  message.style.marginBottom = "20px";
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.textContent = "Try Again";
+  tryAgainBtn.className = "btn-style701";
+  tryAgainBtn.onclick = () => {
+    document.getElementById("cookPage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    doneBox.remove(); // clean up
+  };
+
+  doneBox.appendChild(message);
+  doneBox.appendChild(tryAgainBtn);
+  document.body.appendChild(doneBox);
+
+  // Center the message box
+  doneBox.style.position = "absolute";
+  doneBox.style.top = "50%";
+  doneBox.style.left = "50%";
+  doneBox.style.transform = "translate(-50%, -50%)";
+  doneBox.style.backgroundColor = "#fff";
+  doneBox.style.padding = "20px";
+  doneBox.style.borderRadius = "8px";
+  doneBox.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
+
+function showFailMessage() {
+  const oldBox = document.getElementById("done-message-box");
+  if (oldBox) oldBox.remove(); // clean up any existing message
+
+  const failBox = document.createElement("div");
+  failBox.id = "done-message-box";
+
+  const message = document.createElement("div");
+  message.textContent = `Time's up! You didn't finish in time.`;
+  message.style.marginBottom = "20px";
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.textContent = "Try Again";
+  tryAgainBtn.className = "btn-style701";
+  tryAgainBtn.onclick = () => {
+    document.getElementById("cookPage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    failBox.remove(); // clean up
+  };
+
+  failBox.appendChild(message);
+  failBox.appendChild(tryAgainBtn);
+  document.body.appendChild(failBox);
+
+  // Center the message box
+  failBox.style.position = "absolute";
+  failBox.style.top = "50%";
+  failBox.style.left = "50%";
+  failBox.style.transform = "translate(-50%, -50%)";
+  failBox.style.backgroundColor = "#fff";
+  failBox.style.padding = "20px";
+  failBox.style.borderRadius = "8px";
+  failBox.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
