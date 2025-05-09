@@ -84,7 +84,7 @@ function showCookingPage(recipe) {
   });
 
   const dropArea = document.getElementById("drop-area");
-  dropArea.innerHTML = "Drop ingredients here";
+  dropArea.innerHTML = "Drop ingredients here as fast as possible in the correct order";
   dropArea.ondragover = allowDrop;
   dropArea.ondrop = drop;
 
