@@ -4,8 +4,8 @@ let interval;
 function startTimer() {
   const timerElement = document.getElementById("timer");
   interval = setInterval(() => {
+    timerElement.textContent = `Time left: ${timer}`;
     timer--;
-    timerElement.textContent = `Time: ${timer}`;
     if (timer <= 0) {
       clearInterval(interval);
       endGame();

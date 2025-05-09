@@ -81,3 +81,63 @@
   text-align: center;
   line-height: 100px;
 }
+
+
+#drop-area {
+  min-height: 150px;
+  border: 2px dashed #aaa;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #fff7e6;
+}
+
+.dropped-item {
+  background-color: #ffe;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+
+/* Saat bahan di-drag */
+#ingredient-list li:active {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+  cursor: grabbing;
+}
+
+/* Saat dijatuhkan ke drop area */
+@keyframes popIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dropped-item {
+  animation: popIn 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+/* Animasi langkah memasak */
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#step-instruction {
+  animation: fadeInStep 0.5s ease;
+}

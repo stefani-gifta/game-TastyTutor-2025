@@ -35,13 +35,13 @@ function showCookingPage(recipe) {
     cookie: ["Flour", "Egg", "Sugar"]
   };
 
-  const steps = {
-    cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
-    onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
-    hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
-    taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
-    cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
-  };
+  // const steps = {
+  //   cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
+  //   onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
+  //   hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
+  //   taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
+  //   cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
+  // };
 
   const list = document.getElementById("ingredient-list");
   list.innerHTML = "";

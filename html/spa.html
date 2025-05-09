@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -46,30 +46,13 @@
     <div id="cookPage" style="display: none;">
       <a id="back-button" class="button" onclick="goToGame()">Back</a>
       <div id="cook-container">
-        <div id="cook-container">
-  <div id="ingredients-box">
-    <h3>Ingredients</h3>
-    <ul id="ingredient-list"></ul>
-  </div>
-  <div id="drop-area">Drop ingredients here</div>
-  <div id="cooking-steps" style="display: none;">
-    <h3>Steps</h3>
-    <div id="step-instruction"></div>
-    <button id="next-step-button">Next</button>
-  </div>
-</div>
-
-        <!-- Add Timer and Score Here -->
-        <div id="game-info">
-          <span id="timer">Time: 60s</span>
-          <span id="score">Score: 0</span>
-        </div>
-
-        <img id="recipe-img" src="" alt="Recipe Image">
-
         <div id="ingredients-box">
           <h3>Ingredients</h3>
           <ul id="ingredient-list"></ul>
+        </div>
+
+        <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
+          Drop here
         </div>
 
         <div id="cooking-steps" style="display: none;">
@@ -77,92 +60,20 @@
           <div id="step-instruction"></div>
           <button id="next-step-button">Next</button>
         </div>
-        <!--Drag and Drop-->
-      <ul id="ingredient-list">
-        <li draggable="true" ondragstart="drag(event)">Milk</li>
-        <li draggable="true" ondragstart="drag(event)">Cereal</li>
-        <li draggable="true" ondragstart="drag(event)">Bowl</li>
-      </ul>
 
-      <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-        Drop here
-      </div>
+        <!-- Add Timer and Score Here -->
+        <div id="game-info">
+          <span id="timer">Time left: 60s</span>
+          <span id="score">Score: 0</span>
+        </div>
 
+        <img id="recipe-img" src="" alt="Recipe Image">
       </div>
     </div>
   </div>
 
-  <script>
-    function goToGame() {
-      document.getElementById("homePage").style.display = "none";
-      document.getElementById("gamePage").style.display = "block";
-      document.getElementById("cookPage").style.display = "none";
-    }
-  
-    function goToHome() {
-      document.getElementById("homePage").style.display = "block";
-      document.getElementById("gamePage").style.display = "none";
-      document.getElementById("cookPage").style.display = "none";
-    }
-  
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".recipe").forEach(img => {
-        img.addEventListener("click", () => {
-          const recipe = img.dataset.recipe;
-          showCookingPage(recipe);
-        });
-      });
-    });
-  
-    function showCookingPage(recipe) {
-      document.getElementById("gamePage").style.display = "none";
-      document.getElementById("cookPage").style.display = "block";
-  
-      const recipeImg = document.getElementById("recipe-img");
-      recipeImg.src = `../assets/${recipe}.png`;
-      recipeImg.alt = recipe;
-  
-      const ingredients = {
-        cereal: ["Milk", "Cereal", "Bowl"],
-        onigiri: ["Rice", "Seaweed", "Salt"],
-        hotdog: ["Bun", "Sausage", "Ketchup"],
-        taco: ["Tortilla", "Meat", "Cheese"],
-        cookie: ["Flour", "Egg", "Sugar"]
-      };
-  
-      const steps = {
-        cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
-        onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
-        hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
-        taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
-        cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
-      };
-  
-      const list = document.getElementById("ingredient-list");
-      list.innerHTML = "";
-      ingredients[recipe].forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
-      });
-  
-      const stepContainer = document.getElementById("cooking-steps");
-      const stepText = document.getElementById("step-instruction");
-      const nextButton = document.getElementById("next-step-button");
-      let stepIndex = 0;
-  
-      stepText.textContent = steps[recipe][stepIndex];
-      stepContainer.style.display = "block";
-  
-      nextButton.onclick = () => {
-        stepIndex++;
-        if (stepIndex < steps[recipe].length) {
-          stepText.textContent = steps[recipe][stepIndex];
-        } else {
-          stepText.textContent = "Done!";
-          nextButton.disabled = true;
-        }
-      };
-    }
-  </script>
-  
+  <script src="../js/DragandDrop.js"></script>
+  <script src="../js/enhancedGame.js"></script>
+  <script src="../js/cook.js"></script>
+</body>
+</html>

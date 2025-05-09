@@ -1,115 +1,124 @@
-const recipeName = localStorage.getItem("selectedRecipe");
-const img = document.getElementById("recipe-img");
-const list = document.getElementById("ingredient-list");
-const stepBox = document.getElementById("step-instruction");
-const stepButton = document.getElementById("next-step-button");
-const stepContainer = document.getElementById("cooking-steps");
-const timerElement = document.getElementById("timer");
-const scoreElement = document.getElementById("score");
-let score = 0;
+function goToGame() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("gamePage").style.display = "block";
+  document.getElementById("cookPage").style.display = "none";
+}
 
-// Data resep
-const ingredientsMap = {
-  cereal: ["Cereal", "Milk", "Bowl", "Spoon"],
-  onigiri: ["Rice", "Seaweed", "Salt", "Filling"],
-  hotdog: ["Hotdog bun", "Sausage", "Ketchup", "Mustard"],
-  taco: ["Taco shell", "Meat", "Lettuce", "Cheese"],
-  cookie: ["Flour", "Eggs", "Sugar", "Chocolate chips"]
+function goToHome() {
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "none";
+}
+
+// Data resep dan langkah
+const ingredients = {
+  cereal: ["Milk", "Cereal", "Bowl"],
+  onigiri: ["Rice", "Seaweed", "Salt"],
+  hotdog: ["Bun", "Sausage", "Ketchup"],
+  taco: ["Tortilla", "Meat", "Cheese"],
+  cookie: ["Flour", "Egg", "Sugar"]
 };
 
-const stepsMap = {
-  cereal: [
-    "Pour cereal into the bowl.",
-    "Add milk.",
-    "Grab a spoon.",
-    "Enjoy your cereal!"
-  ],
-  onigiri: [
-    "Shape the rice into triangle.",
-    "Add filling inside.",
-    "Wrap with seaweed.",
-    "Sprinkle some salt."
-  ],
-  hotdog: [
-    "Grill the sausage.",
-    "Put sausage into the bun.",
-    "Add ketchup and mustard.",
-    "Serve it hot!"
-  ],
-  taco: [
-    "Heat the taco shell.",
-    "Add meat and lettuce.",
-    "Top with cheese.",
-    "Fold and enjoy!"
-  ],
-  cookie: [
-    "Mix flour, eggs, and sugar.",
-    "Add chocolate chips.",
-    "Bake in the oven.",
-    "Take out and cool down."
-  ]
+const steps = {
+  cereal: ["Pour cereal into bowl", "Add milk", "Enjoy!"],
+  onigiri: ["Cook rice", "Form triangle", "Wrap with seaweed"],
+  hotdog: ["Heat sausage", "Place in bun", "Add ketchup"],
+  taco: ["Prepare fillings", "Add to tortilla", "Fold and serve"],
+  cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
 };
 
-// Display ingredients
-if (recipeName) {
-  img.src = `../assets/${recipeName}.png`;
-  img.alt = `${recipeName} image`;
-  const ingredients = ingredientsMap[recipeName] || [];
-  ingredients.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    list.appendChild(li);
+let currentRecipe = "";
+let droppedItems = [];
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".recipe").forEach(img => {
+    img.addEventListener("click", () => {
+      const recipe = img.dataset.recipe;
+      showCookingPage(recipe);
+    });
   });
-}
-
-// Game logic
-let stepIndex = 0;
-let currentSteps = stepsMap[recipeName] || [];
-
-function startCookingGame() {
-  stepContainer.style.display = "block";
-  stepIndex = 0;
-  stepBox.textContent = currentSteps[stepIndex];
-  stepButton.textContent = "Next";
-  stepIndex++;
-  startTimer(); 
-  increaseScore(5); 
-}
-
-stepButton.addEventListener("click", () => {
-  if (stepIndex < currentSteps.length) {
-    stepBox.textContent = currentSteps[stepIndex];
-    increaseScore(10); 
-    stepIndex++;
-    if (stepIndex === currentSteps.length) {
-      stepButton.textContent = "Finish";
-    }
-  } else {
-    endGame();  
-  }
 });
 
-function increaseScore(points) {
-  score += points;
-  scoreElement.textContent = `Score: ${score}`;
-}
+// Show cook page and populate ingredients
+function showCookingPage(recipe) {
+  currentRecipe = recipe;
+  droppedItems = [];
+  
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "block";
 
-function startTimer() {
-  let timer = 60; 
-  const interval = setInterval(() => {
-    timer--;
-    timerElement.textContent = `Time: ${timer}s`;
-    if (timer <= 0) {
-      clearInterval(interval);
-      endGame(); 
-    }
-  }, 1000);
-}
+  const recipeImg = document.getElementById("recipe-img");
+  recipeImg.src = `../assets/${recipe}.png`;
+  recipeImg.alt = recipe;
 
-function endGame() {
+  const list = document.getElementById("ingredient-list");
+  list.innerHTML = "";
+  ingredients[recipe].forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    li.setAttribute("draggable", "true");
+    li.ondragstart = drag;
+    list.appendChild(li);
+  });
+
+  const dropArea = document.getElementById("drop-area");
+  dropArea.innerHTML = "Drop ingredients here";
+  dropArea.ondragover = allowDrop;
+  dropArea.ondrop = drop;
+
+  const stepContainer = document.getElementById("cooking-steps");
+  const stepText = document.getElementById("step-instruction");
   stepContainer.style.display = "none";
-  alert(`Game Over! Your score is: ${score}`);
-  goToGame(); 
+  stepText.textContent = "";
 }
 
-window.addEventListener("DOMContentLoaded", startCookingGame);
+// Drag and Drop functions
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.textContent);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+
+  if (!droppedItems.includes(data)) {
+    droppedItems.push(data);
+    const node = document.createElement("div");
+    node.textContent = data;
+    node.className = "dropped-item";
+    ev.target.appendChild(node);
+  }
+
+  // Cek apakah semua bahan sudah didrop
+  const required = ingredients[currentRecipe];
+  if (droppedItems.length === required.length &&
+      required.every(item => droppedItems.includes(item))) {
+    startCookingSteps(currentRecipe);
+  }
+}
+
+// Mulai langkah memasak
+function startCookingSteps(recipe) {
+  const stepContainer = document.getElementById("cooking-steps");
+  const stepText = document.getElementById("step-instruction");
+  const nextButton = document.getElementById("next-step-button");
+
+  let stepIndex = 0;
+  stepText.textContent = steps[recipe][stepIndex];
+  stepContainer.style.display = "block";
+  nextButton.disabled = false;
+
+  nextButton.onclick = () => {
+    stepIndex++;
+    if (stepIndex < steps[recipe].length) {
+      stepText.textContent = steps[recipe][stepIndex];
+    } else {
+      stepText.textContent = "Done!";
+      nextButton.disabled = true;
+    }
+  };
+}
