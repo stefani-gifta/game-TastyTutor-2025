@@ -18,9 +18,9 @@ body {
   width: 100%;
   /* background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit; */
   background: #d17f50cb url(../assets/Tasty\ Tutor\ Game\ Homepage.png) repeat fixed center;
-  background-blend-mode: darken;
+  background-blend-mode: multiply;
   background-size: 25%;
-  backdrop-filter: contrast(75%);
+  backdrop-filter: contrast(45%);
   cursor: url('../assets/cursors/pointer_toon_a.png'), crosshair;
   font-size: 1.5vw;
 }

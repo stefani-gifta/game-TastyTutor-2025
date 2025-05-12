@@ -22,8 +22,8 @@ function goToHome() {
 
 // Data resep dan langkah
 const ingredients = {
-  cereal: ["Milk", "Cereal", "Bowl"],
-  onigiri: ["Rice", "Nori", "Salt"],
+  cereal: ["Bowl", "Cereal", "Milk"], // The "cereal first, milk second" approach generally leads to a more controlled and consistent cereal-to-milk ratio
+  onigiri: ["Rice", "Salt", "Nori"],
   hotdog: ["Bun", "Sausage", "Ketchup"],
   taco: ["Tortilla", "Meat", "Cheese"],
   cookie: ["Flour", "Egg", "Sugar"]
@@ -46,6 +46,8 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+let timeScore = 100, orderScore = 0;
+
 // Show cook page and populate ingredients
 function showCookingPage(recipe) {
   clearInterval(timerInterval); // in case it's already running
@@ -58,7 +60,7 @@ function showCookingPage(recipe) {
     timerSoundTicking.play();
     timeLeft--;
     if (timeLeft < 50) {
-      score = Math.max(0, Math.floor((timeLeft / 50) * 100));
+      timeScore = Math.max(0, Math.floor((timeLeft / 50) * 100));
     }
     document.getElementById("timer").textContent = `${timeLeft}s`;
     
@@ -162,15 +164,31 @@ function drop(ev) {
   console.log(required);
   const allDropped = required.length === droppedItems.length &&
                      required.every(item => droppedItems.includes(item));
+                      // required.every((item, index) => item === droppedItems[index]); // in the right order
   console.log(droppedItems);
+
+  if (required.length === droppedItems.length) {
+    orderScore = 0;
+    required.forEach((item, index) => {
+      if (item === droppedItems[index]) {
+        orderScore += 1;
+      }
+    });
+  }
 
   if (allDropped) {
     console.log("dropped");
 
+    console.log("time score: " + timeScore);
+    const orderPercentage = orderScore / required.length;
+    console.log("order score: " + orderScore);
+    score = Math.floor(timeScore * orderPercentage);
+    console.log(score);
+
     const doneBox = document.createElement("div");
     doneBox.id = "done-message-box";
 
-    const message = document.createElement("div");
+    const message = document.createElement("p");
     message.textContent = `All done! Your score is ${score}`;
     message.style.marginBottom = "10px";
 
@@ -215,16 +233,6 @@ function showDoneMessage() {
   doneBox.appendChild(message);
   doneBox.appendChild(tryAgainBtn);
   document.body.appendChild(doneBox);
-
-  // Center the message box
-  doneBox.style.position = "absolute";
-  doneBox.style.top = "50%";
-  doneBox.style.left = "50%";
-  doneBox.style.transform = "translate(-50%, -50%)";
-  doneBox.style.backgroundColor = "#fff";
-  doneBox.style.padding = "20px";
-  doneBox.style.borderRadius = "8px";
-  doneBox.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
 }
 
 function showFailMessage() {
@@ -234,7 +242,7 @@ function showFailMessage() {
   const failBox = document.createElement("div");
   failBox.id = "done-message-box";
 
-  const message = document.createElement("div");
+  const message = document.createElement("p");
   message.textContent = `Time's up! You didn't finish in time.`;
   message.style.marginBottom = "20px";
 
