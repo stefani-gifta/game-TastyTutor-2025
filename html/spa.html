@@ -48,18 +48,9 @@
     <div id="cookPage" style="display: none;">
       <a id="back-button" class="button" onclick="goToGame()">Back</a>
       <div id="cook-container">
-        <div id="ingredients-box">
-          <h3>Ingredients</h3>
-          <ul id="ingredient-list"></ul>
-        </div>
 
         <h2 id="recipe-title"></h1>
         <img id="recipe-img" src="" alt="Recipe Image">
-        <div id="cooking-steps" style="display: none;">
-          <h3>Steps</h3>
-          <div id="step-instruction"></div>
-          <button id="next-step-button">Next</button>
-        </div>
 
         <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
           Drop ingredients here as fast as possible in the correct order
@@ -69,6 +60,11 @@
         <div id="game-info">
           <img id="timer-img" src="../assets/timer.png">
           <p id="timer"></p>
+        </div>
+
+        <div id="ingredients-box">
+          <h3>Ingredients</h3>
+          <div id="ingredient-list"></div>
         </div>
       </div>
     </div>

@@ -92,8 +92,6 @@ function showCookingPage(recipe) {
     img.id = `ingredient-${index}`;
     img.draggable = true;
     img.ondragstart = drag;
-    img.style.width = "50px";
-    img.style.margin = "10px";
     img.textContent = item;
     list.appendChild(img);
   });
@@ -102,11 +100,6 @@ function showCookingPage(recipe) {
   dropArea.textContent = "Drop ingredients here as fast as possible in the correct order";
   dropArea.ondragover = allowDrop;
   dropArea.ondrop = drop;
-
-  const stepContainer = document.getElementById("cooking-steps");
-  const stepText = document.getElementById("step-instruction");
-  stepContainer.style.display = "none";
-  stepText.textContent = "";
 }
 
 function stopTicking() {
@@ -157,8 +150,7 @@ function drop(ev) {
     droppedItems.push(data);
     const node = document.createElement("img");
     node.src = `../assets/ingredients_${currentRecipe}/${data.toLowerCase()}.png`;
-    node.style.width = "50px";
-    node.style.margin = "25px";
+    node.style.width = "5vw";
     drop_area.appendChild(node);
 
     const dropSound = document.getElementById("drop-sound");
@@ -174,11 +166,6 @@ function drop(ev) {
 
   if (allDropped) {
     console.log("dropped");
-    const stepContainer = document.getElementById("cooking-steps");
-    const stepText = document.getElementById("step-instruction");
-
-    stepContainer.style.display = "none";
-    stepText.textContent = "";
 
     const doneBox = document.createElement("div");
     doneBox.id = "done-message-box";
