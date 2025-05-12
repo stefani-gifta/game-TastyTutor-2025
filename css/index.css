@@ -8,12 +8,12 @@
 }
 
 h1, h2 {
-  margin: 0;
   text-align: center;
   text-shadow: 3px 0 #fff597,
               -3px 0 #fff597,
               0 2px #fff597,
               0 -2px #fff597;
+  margin-bottom: 0;
 }
 
 h1 {

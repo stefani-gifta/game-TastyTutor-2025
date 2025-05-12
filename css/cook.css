@@ -19,7 +19,7 @@
 }
 
 #recipe-img {
-  max-height: 40vh;
+  max-height: 20vh;
   object-fit: contain;
 }
 
@@ -37,7 +37,6 @@
 #ingredients-box h3 {
   margin-top: 0;
 }
-
 
 #cooking-steps {
   background-color: #fff9dc;
@@ -85,10 +84,10 @@
 }
 
 #drop-area {
-  width: 200px;
-  height: 100px;
+  width: 30vw;
+  height: 200px;
   border: 2px dashed #ccc;
-  margin: 20px;
+  margin: 30px;
   text-align: center;
   line-height: 100px;
 }
@@ -116,15 +115,12 @@
   font-weight: bold;
 }
 
-
-/* Saat bahan di-drag */
 #ingredient-list li:active {
   transform: scale(1.1);
   transition: transform 0.2s ease;
   cursor: grabbing;
 }
 
-/* Saat dijatuhkan ke drop area */
 @keyframes popIn {
   0% {
     transform: scale(0.3);
@@ -141,7 +137,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Animasi langkah memasak */
 @keyframes fadeInStep {
   from {
     opacity: 0;
@@ -197,20 +192,29 @@
   cursor: pointer;
 }
 
-
-/* .btn-style701 {
-  background-color: #fff597;
-  border: none;
+.btn-style-play-again {
   color: #b85d39;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #fff597;
+  border-radius: 5px;
+  transition: 0.5s;
 }
 
-.btn-style701:hover {
-  background-color: #b85d39;
-} */
+.btn-style-play-again:hover {
+  box-shadow: inset 5px 5px 7px #b85d39, inset -5px -5px 7px #b85d39;
+}
+
+#game-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#timer {
+  font-size: 30px;
+  text-shadow: 3px 0 #fff597,
+              -3px 0 #fff597,
+              0 2px #fff597,
+              0 -2px #fff597;
+}

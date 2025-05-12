@@ -1,15 +1,23 @@
+let timerInterval = null; // null to avoid bug when navigating won't stop
+
+let currentRecipe = "";
+let droppedItems = [];
+const timerSoundTicking = document.getElementById("timer-sound");
+
 function goToGame() {
+  clearInterval(timerInterval); // stop the timer if navigating away
+  stopTicking();
   document.getElementById("homePage").style.display = "none";
   document.getElementById("gamePage").style.display = "block";
   document.getElementById("cookPage").style.display = "none";
-  clearInterval(timerInterval); // stop the timer if navigating away
 }
 
 function goToHome() {
+  clearInterval(timerInterval); // stop the timer if navigating away
+  stopTicking();
   document.getElementById("homePage").style.display = "block";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
-  clearInterval(timerInterval); // stop the timer if navigating away
 }
 
 // Data resep dan langkah
@@ -29,9 +37,6 @@ const ingredients = {
 //   cookie: ["Mix ingredients", "Bake in oven", "Cool and eat"]
 // };
 
-let currentRecipe = "";
-let droppedItems = [];
-
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".recipe").forEach(img => {
     img.addEventListener("click", () => {
@@ -46,23 +51,33 @@ function showCookingPage(recipe) {
   clearInterval(timerInterval); // in case it's already running
   score = 100;
   timeLeft = 60;
-  document.getElementById("timer").textContent = `Time left: ${timeLeft}s`;
+  document.getElementById("timer").textContent = `${timeLeft}s`;
   currentRecipe = recipe;
   droppedItems = [];
   timerInterval = setInterval(() => {
+    timerSoundTicking.play();
     timeLeft--;
     if (timeLeft < 50) {
       score = Math.max(0, Math.floor((timeLeft / 50) * 100));
     }
-    document.getElementById("timer").textContent = `Time left: ${timeLeft}s`;
+    document.getElementById("timer").textContent = `${timeLeft}s`;
     
+    const timersUpSound = document.getElementById("timers-up-sound");
     if (timeLeft <= 0) {
-      clearInterval(timerInterval);
+      stopTicking();
+      timersUpSound.play();
       showFailMessage();
+      timersUpSound.pause();
+      timersUpSound.currentTime = 0;
+      clearInterval(timerInterval);
+      return;
     }
   }, 1000);
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "block";
+
+  const recipeName = document.getElementById("recipe-title");
+  recipeName.textContent = `${recipe}`;
 
   const recipeImg = document.getElementById("recipe-img");
   recipeImg.src = `../assets/${recipe}.png`;
@@ -92,6 +107,12 @@ function showCookingPage(recipe) {
   const stepText = document.getElementById("step-instruction");
   stepContainer.style.display = "none";
   stepText.textContent = "";
+}
+
+function stopTicking() {
+  timerSoundTicking.pause();
+  timerSoundTicking.currentTime = 0;
+  console.log(timerSoundTicking.currentTime);
 }
 
 // Drag and Drop functions
@@ -136,8 +157,8 @@ function drop(ev) {
     droppedItems.push(data);
     const node = document.createElement("img");
     node.src = `../assets/ingredients_${currentRecipe}/${data.toLowerCase()}.png`;
-    node.style.width = "30px";
-    node.style.margin = "10px";
+    node.style.width = "50px";
+    node.style.margin = "25px";
     drop_area.appendChild(node);
 
     const dropSound = document.getElementById("drop-sound");
@@ -164,14 +185,16 @@ function drop(ev) {
 
     const message = document.createElement("div");
     message.textContent = `All done! Your score is ${score}`;
-    message.style.marginBottom = "20px";
+    message.style.marginBottom = "10px";
 
     const tryAgainBtn = document.createElement("button");
     tryAgainBtn.textContent = "Play Again?";
-    tryAgainBtn.className = "btn-style701";
+    tryAgainBtn.className = "btn-style-play-again";
     tryAgainBtn.onclick = () => {
       document.getElementById("cookPage").style.display = "none";
       document.getElementById("gamePage").style.display = "block";
+      stopTicking();
+      clearInterval(timerInterval);
       doneBox.remove(); // clean up
     };
 
@@ -230,7 +253,7 @@ function showFailMessage() {
 
   const tryAgainBtn = document.createElement("button");
   tryAgainBtn.textContent = "Try Again";
-  tryAgainBtn.className = "btn-style701";
+  tryAgainBtn.className = "btn-style-play-again";
   tryAgainBtn.onclick = () => {
     document.getElementById("cookPage").style.display = "none";
     document.getElementById("gamePage").style.display = "block";

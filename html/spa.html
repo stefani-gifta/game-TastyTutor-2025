@@ -13,6 +13,8 @@
   <audio id="bg-music" src="../assets/Lukrembo - Kitchen (freetouse.com).mp3"></audio>
   <img src="../assets/music.png" id="pauseMusic">
   <audio id="drop-sound" src="../assets/mega-bass-sub-drop-effect-240472.mp3"></audio>
+  <audio id="timer-sound" src="../assets/kitchen_timer.mp3"></audio>
+  <audio id="timers-up-sound" src="../assets/timers_up.mp3"></audio>
   <div id="container">
     <!-- Home Page -->
     <div id="homePage">
@@ -51,6 +53,7 @@
           <ul id="ingredient-list"></ul>
         </div>
 
+        <h2 id="recipe-title"></h1>
         <img id="recipe-img" src="" alt="Recipe Image">
         <div id="cooking-steps" style="display: none;">
           <h3>Steps</h3>
@@ -58,20 +61,20 @@
           <button id="next-step-button">Next</button>
         </div>
 
-        <!-- Add Timer and Score Here -->
-        <div id="game-info">
-          <span id="timer">Time left: 60s</span>
-        </div>
         <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
           Drop ingredients here as fast as possible in the correct order
         </div>
-        <div></div>
+        
+        <!-- Timer -->
+        <div id="game-info">
+          <img id="timer-img" src="../assets/timer.png">
+          <p id="timer"></p>
+        </div>
       </div>
     </div>
   </div>
 
   <script src="../js/main.js"></script>
-  <script src="../js/enhancedGame.js"></script>
   <script src="../js/cook.js"></script>
 </body>
 </html>

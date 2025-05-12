@@ -38,8 +38,7 @@
 }
 
 .recipe {
-  width: 12vh;
-  height: 12vh;
+  width: 10vh;
   cursor: url('../assets/cursors/hand_point.png'), pointer;
   transition: transform 0.2s;
   opacity: 0.7;
