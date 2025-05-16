@@ -3,6 +3,7 @@ let timerInterval = null; // null to avoid bug when navigating won't stop
 let currentRecipe = "";
 let droppedItems = [];
 const timerSoundTicking = document.getElementById("timer-sound");
+const drop_area = document.getElementById("drop-area");
 
 function goToGame() {
   clearInterval(timerInterval); // stop the timer if navigating away
@@ -69,8 +70,6 @@ function showCookingPage(recipe) {
       stopTicking();
       timersUpSound.play();
       showFailMessage();
-      timersUpSound.pause();
-      timersUpSound.currentTime = 0;
       clearInterval(timerInterval);
       return;
     }
@@ -113,10 +112,12 @@ function stopTicking() {
 // Drag and Drop functions
 function allowDrop(ev) {
   ev.preventDefault();
+  drop_area.classList.remove("hovered");
 }
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.alt);
+  drop_area.classList.add("hovered");
 }
 
 // Mulai langkah memasak
@@ -143,7 +144,6 @@ function drag(ev) {
 function drop(ev) {
   ev.preventDefault();
   const data = ev.dataTransfer.getData("text");
-  const drop_area = document.getElementById("drop-area");
 
   if (!droppedItems.includes(data)) {
     if (drop_area.textContent.includes("Drop")) {
@@ -191,6 +191,9 @@ function drop(ev) {
     const message = document.createElement("p");
     message.textContent = `All done! Your score is ${score}`;
     message.style.marginBottom = "10px";
+    
+    stopTicking();
+    clearInterval(timerInterval);
 
     const tryAgainBtn = document.createElement("button");
     tryAgainBtn.textContent = "Play Again?";
@@ -198,8 +201,6 @@ function drop(ev) {
     tryAgainBtn.onclick = () => {
       document.getElementById("cookPage").style.display = "none";
       document.getElementById("gamePage").style.display = "block";
-      stopTicking();
-      clearInterval(timerInterval);
       doneBox.remove(); // clean up
     };
 
@@ -253,6 +254,8 @@ function showFailMessage() {
     document.getElementById("cookPage").style.display = "none";
     document.getElementById("gamePage").style.display = "block";
     failBox.remove(); // clean up
+    timersUpSound.pause();
+    timersUpSound.currentTime = 0;
   };
 
   failBox.appendChild(message);
