@@ -7,6 +7,48 @@ const timersUpSound = document.getElementById("timers-up-sound");
 const victorySound = document.getElementById("victory-sound");
 const drop_area = document.getElementById("drop-area");
 
+/* confetti */
+const emojiMap = {
+  cookie: ['🍪'],
+  onigiri: ['🍙'],
+  cereal: ['🥣'],
+  hotdog: ['🌭'],
+  taco: ['🌮']
+};
+
+function emojiConfetti(emojis) {
+  const count = 30;
+
+  for (let i = 0; i < count; i++) {
+    const emoji = document.createElement('div');
+    emoji.classList.add('emoji');
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // half from left, half from right
+    const isLeft = i < count / 2;
+    emoji.style.left = isLeft ? '0' : '95vw';
+    emoji.style.bottom = '0';
+
+    // random angle and distance
+    const angle = (isLeft ? 1 : -1) * (30 + Math.random() * 40); // degrees
+    const distance = 300 + Math.random() * 100; // px
+    const rotate = isLeft ? (0 + Math.random(5)) : (180 + Math.random(5));
+
+    emoji.style.setProperty('--angle', angle + 'deg');
+    emoji.style.setProperty('--distance', distance + 'px');
+    emoji.style.setProperty('--spin', rotate + 'deg');
+
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 2000);
+  }
+}
+
+function emojiConfettiByMode(mode) {
+  const emojis = [...(emojiMap[mode] || []), '🎉'];; // array or null, default is confetti
+  emojiConfetti(emojis);
+}
+/* confetti end */
+
 function goToGame() {
   clearInterval(timerInterval); // stop the timer if navigating away
   stopTicking();
@@ -177,7 +219,7 @@ function drop(ev) {
   }
 
   if (allDropped) {
-    console.log("dropped");
+    console.log(currentRecipe);
 
     console.log("time score: " + timeScore);
     const orderPercentage = orderScore / required.length;
@@ -186,6 +228,7 @@ function drop(ev) {
     console.log(score);
 
     victorySound.play();
+    emojiConfettiByMode(currentRecipe);
 
     const doneBox = document.createElement("div");
     doneBox.id = "done-message-box";
