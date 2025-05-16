@@ -66,12 +66,29 @@
   }
 }
 
+/* before revision (dining table)
 #drop-area {
   width: 30vw;
   height: 200px;
   border: 2px dashed #aaa;
   padding: 20px;
   background-color: #fff7e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  font-size: 2vw;
+  transition: 0.3s;
+} */
+
+#drop-area {
+  width: 30vw;
+  height: 200px;
+  background: #fff7e6 url(../assets/wooden_texture.jpg) center center / cover no-repeat;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #4c3604;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
