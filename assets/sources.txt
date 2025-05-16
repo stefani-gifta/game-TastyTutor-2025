@@ -1,4 +1,6 @@
-sound effect: from pixabay
+sound effect: from pixabay (https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=295086)
+victory sound effect: by u_3bsnvt0dsu (https://pixabay.com/users/u_3bsnvt0dsu-48554563/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=295086)
+
 music.png: https://www.flaticon.com/free-icon/music_2424726?term=music&related_id=2424726
 onigiri.png: https://www.flaticon.com/free-icon/onigiri_284796?related_id=284796&origin=pack
 taco.png: https://www.flaticon.com/free-icon/taco_284824
@@ -6,3 +8,4 @@ cookie.png: https://www.flaticon.com/free-icon/cookie_284798
 hotdog.png: https://www.flaticon.com/free-icon/hot-dog_284801
 cereal.png: https://www.flaticon.com/free-icon/cereals_2829840
 timer.png: https://www.flaticon.com/free-icon/stopwatch_3095036?term=timer&page=1&position=10&origin=search&related_id=3095036
+wooden_texture.jpg: https://www.istockphoto.com/id/vektor/template-latar-belakang-vektor-warna-datar-permukaan-kayu-ringan-gm1440406602-480404132

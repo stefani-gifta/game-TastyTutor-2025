@@ -3,6 +3,51 @@ let timerInterval = null; // null to avoid bug when navigating won't stop
 let currentRecipe = "";
 let droppedItems = [];
 const timerSoundTicking = document.getElementById("timer-sound");
+const timersUpSound = document.getElementById("timers-up-sound");
+const victorySound = document.getElementById("victory-sound");
+const drop_area = document.getElementById("drop-area");
+
+/* confetti */
+const emojiMap = {
+  cookie: ['🍪'],
+  onigiri: ['🍙'],
+  cereal: ['🥣'],
+  hotdog: ['🌭'],
+  taco: ['🌮']
+};
+
+function emojiConfetti(emojis) {
+  const count = 30;
+
+  for (let i = 0; i < count; i++) {
+    const emoji = document.createElement('div');
+    emoji.classList.add('emoji');
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // half from left, half from right
+    const isLeft = i < count / 2;
+    emoji.style.left = isLeft ? '0' : '95vw';
+    emoji.style.bottom = '0';
+
+    // random angle and distance
+    const angle = (isLeft ? 1 : -1) * (30 + Math.random() * 40); // degrees
+    const distance = 300 + Math.random() * 100; // px
+    const rotate = isLeft ? (0 + Math.random(5)) : (180 + Math.random(5));
+
+    emoji.style.setProperty('--angle', angle + 'deg');
+    emoji.style.setProperty('--distance', distance + 'px');
+    emoji.style.setProperty('--spin', rotate + 'deg');
+
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 2000);
+  }
+}
+
+function emojiConfettiByMode(mode) {
+  const emojis = [...(emojiMap[mode] || []), '🎉'];; // array or null, default is confetti
+  emojiConfetti(emojis);
+}
+/* confetti end */
 
 function goToGame() {
   clearInterval(timerInterval); // stop the timer if navigating away
@@ -64,13 +109,10 @@ function showCookingPage(recipe) {
     }
     document.getElementById("timer").textContent = `${timeLeft}s`;
     
-    const timersUpSound = document.getElementById("timers-up-sound");
     if (timeLeft <= 0) {
       stopTicking();
       timersUpSound.play();
       showFailMessage();
-      timersUpSound.pause();
-      timersUpSound.currentTime = 0;
       clearInterval(timerInterval);
       return;
     }
@@ -99,7 +141,6 @@ function showCookingPage(recipe) {
   });
 
   const dropArea = document.getElementById("drop-area");
-  dropArea.textContent = "Drop ingredients here as fast as possible in the correct order";
   dropArea.ondragover = allowDrop;
   dropArea.ondrop = drop;
 }
@@ -113,10 +154,12 @@ function stopTicking() {
 // Drag and Drop functions
 function allowDrop(ev) {
   ev.preventDefault();
+  drop_area.classList.remove("hovered");
 }
 
 function drag(ev) {
   ev.dataTransfer.setData("text", ev.target.alt);
+  drop_area.classList.add("hovered");
 }
 
 // Mulai langkah memasak
@@ -143,7 +186,6 @@ function drag(ev) {
 function drop(ev) {
   ev.preventDefault();
   const data = ev.dataTransfer.getData("text");
-  const drop_area = document.getElementById("drop-area");
 
   if (!droppedItems.includes(data)) {
     if (drop_area.textContent.includes("Drop")) {
@@ -177,7 +219,7 @@ function drop(ev) {
   }
 
   if (allDropped) {
-    console.log("dropped");
+    console.log(currentRecipe);
 
     console.log("time score: " + timeScore);
     const orderPercentage = orderScore / required.length;
@@ -185,12 +227,18 @@ function drop(ev) {
     score = Math.floor(timeScore * orderPercentage);
     console.log(score);
 
+    victorySound.play();
+    emojiConfettiByMode(currentRecipe);
+
     const doneBox = document.createElement("div");
     doneBox.id = "done-message-box";
 
     const message = document.createElement("p");
     message.textContent = `All done! Your score is ${score}`;
     message.style.marginBottom = "10px";
+    
+    stopTicking();
+    clearInterval(timerInterval);
 
     const tryAgainBtn = document.createElement("button");
     tryAgainBtn.textContent = "Play Again?";
@@ -198,9 +246,8 @@ function drop(ev) {
     tryAgainBtn.onclick = () => {
       document.getElementById("cookPage").style.display = "none";
       document.getElementById("gamePage").style.display = "block";
-      stopTicking();
-      clearInterval(timerInterval);
       doneBox.remove(); // clean up
+      resetDropArea();
     };
 
     // reset drop area
@@ -253,6 +300,9 @@ function showFailMessage() {
     document.getElementById("cookPage").style.display = "none";
     document.getElementById("gamePage").style.display = "block";
     failBox.remove(); // clean up
+    resetDropArea();
+    timersUpSound.pause();
+    timersUpSound.currentTime = 0;
   };
 
   failBox.appendChild(message);
@@ -268,4 +318,9 @@ function showFailMessage() {
   failBox.style.padding = "20px";
   failBox.style.borderRadius = "8px";
   failBox.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
+
+function resetDropArea() {
+  drop_area.innerHTML = "";
+  drop_area.textContent = "Drop ingredients on this table, as fast as possible in the correct order";
 }
