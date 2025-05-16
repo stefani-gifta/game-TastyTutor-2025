@@ -86,7 +86,6 @@
   width: 30vw;
   height: 250px;
   background: #fff7e6 url(../assets/wooden_texture.jpg) center center / cover no-repeat;
-  background-blend-mode: multiply;
   border-radius: 5px;
   box-shadow:
     0 0 10px rgb(98, 87, 63),     /* soft outer shadow */

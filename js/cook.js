@@ -4,6 +4,7 @@ let currentRecipe = "";
 let droppedItems = [];
 const timerSoundTicking = document.getElementById("timer-sound");
 const timersUpSound = document.getElementById("timers-up-sound");
+const victorySound = document.getElementById("victory-sound");
 const drop_area = document.getElementById("drop-area");
 
 function goToGame() {
@@ -184,6 +185,8 @@ function drop(ev) {
     score = Math.floor(timeScore * orderPercentage);
     console.log(score);
 
+    victorySound.play();
+
     const doneBox = document.createElement("div");
     doneBox.id = "done-message-box";
 
@@ -276,5 +279,5 @@ function showFailMessage() {
 
 function resetDropArea() {
   drop_area.innerHTML = "";
-  drop_area.textContent = "Drop ingredients here as fast as possible in the correct order";
+  drop_area.textContent = "Drop ingredients on this table, as fast as possible in the correct order";
 }
