@@ -46,3 +46,25 @@ function goToHome() {
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
 }
+
+function openTutorial(videoName, titleText) {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  const source = document.getElementById("videoSource");
+  const title = document.getElementById("videoTitle");
+
+  source.src = `../assets/${videoName}.mp4`;
+  video.load();
+  title.textContent = titleText;
+
+  modal.style.display = "flex";
+  video.play();
+}
+
+function closeTutorial() {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+}
