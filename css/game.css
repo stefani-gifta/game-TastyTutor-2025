@@ -70,41 +70,43 @@
 }
 
 #tutorial-section {
-  margin: 5vh auto;
-  padding: 20px;
-  width: 90vw;
+  margin: 30px auto;
+  padding: 10px 15px;
+  width: 70vw;
+  max-width: 900px;
   background-color: #fff7e6;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow-x: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transform: scale(0.95);
 }
 
 #tutorial-section h2 {
-  text-align: center;
-  font-size: 3vw;
+  font-size: 1.5vw;
+  margin-bottom: 15px;
   color: #b85d39;
-  text-shadow: 2px 2px #fff597;
-  margin-bottom: 20px;
+  text-shadow: 1px 1px #fff597;
 }
 
 #video-thumbnails {
   display: flex;
   overflow-x: auto;
-  gap: 20px;
-  padding: 10px;
+  gap: 15px;
+  padding: 5px;
   scroll-snap-type: x mandatory;
+  justify-content: center;
 }
 
 .video-thumb {
   flex: 0 0 auto;
-  width: 160px;
+  width: 130px;
   scroll-snap-align: start;
   background-color: white;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 8px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 
 .video-thumb:hover {
@@ -113,16 +115,19 @@
 
 .video-thumb img {
   width: 100%;
+  height: auto; 
+  object-fit: contain; 
   border-radius: 8px;
-  height: auto;
+  background-color: #fff; 
 }
 
 .video-thumb p {
-  font-size: 14px;
-  margin-top: 8px;
-  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: 6px;
   color: #b85d39;
+  font-weight: bold;
 }
+
 
 #video-thumbnails::-webkit-scrollbar {
   height: 8px;
