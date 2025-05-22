@@ -91,13 +91,13 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-let timeScore = 100, orderScore = 0;
+let timeScore = 70, orderScore = 0,  score = 100;
 
 // Show cook page and populate ingredients
 function showCookingPage(recipe) {
   clearInterval(timerInterval); // in case it's already running
-  score = 100;
   timeLeft = 60;
+  timeScore = 70;
   document.getElementById("timer").textContent = `${timeLeft}s`;
   currentRecipe = recipe;
   droppedItems = [];
@@ -105,7 +105,7 @@ function showCookingPage(recipe) {
     timerSoundTicking.play();
     timeLeft--;
     if (timeLeft < 50) {
-      timeScore = Math.max(0, Math.floor((timeLeft / 50) * 100));
+      timeScore = Math.max(0, Math.floor((timeLeft / 50) * 70));
     }
     document.getElementById("timer").textContent = `${timeLeft}s`;
     
@@ -213,7 +213,7 @@ function drop(ev) {
     orderScore = 0;
     required.forEach((item, index) => {
       if (item === droppedItems[index]) {
-        orderScore += 1;
+        orderScore += 10;
       }
     });
   }
@@ -222,9 +222,8 @@ function drop(ev) {
     console.log(currentRecipe);
 
     console.log("time score: " + timeScore);
-    const orderPercentage = orderScore / required.length;
     console.log("order score: " + orderScore);
-    score = Math.floor(timeScore * orderPercentage);
+    score = Math.floor(timeScore + orderScore);
     console.log(score);
 
     victorySound.play();
@@ -255,4 +254,72 @@ function drop(ev) {
     doneBox.appendChild(tryAgainBtn);
     document.body.appendChild(doneBox);
   }
+}
+
+const oldBox = document.getElementById("done-message-box");
+if (oldBox) oldBox.remove();
+
+function showDoneMessage() {
+  const doneBox = document.createElement("div");
+  doneBox.id = "done-message-box";
+
+  const message = document.createElement("div");
+  message.textContent = `All done! Your score is ${score}`;
+  message.style.marginBottom = "20px";
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.textContent = "Try Again";
+  tryAgainBtn.className = "btn-style701";
+  tryAgainBtn.onclick = () => {
+    document.getElementById("cookPage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    doneBox.remove(); // clean up
+  };
+
+  doneBox.appendChild(message);
+  doneBox.appendChild(tryAgainBtn);
+  document.body.appendChild(doneBox);
+}
+
+function showFailMessage() {
+  const oldBox = document.getElementById("done-message-box");
+  if (oldBox) oldBox.remove(); // clean up any existing message
+
+  const failBox = document.createElement("div");
+  failBox.id = "done-message-box";
+
+  const message = document.createElement("p");
+  message.textContent = `Time's up! You didn't finish in time.`;
+  message.style.marginBottom = "20px";
+
+  const tryAgainBtn = document.createElement("button");
+  tryAgainBtn.textContent = "Try Again";
+  tryAgainBtn.className = "btn-style-play-again";
+  tryAgainBtn.onclick = () => {
+    document.getElementById("cookPage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    failBox.remove(); // clean up
+    resetDropArea();
+    timersUpSound.pause();
+    timersUpSound.currentTime = 0;
+  };
+
+  failBox.appendChild(message);
+  failBox.appendChild(tryAgainBtn);
+  document.body.appendChild(failBox);
+
+  // Center the message box
+  failBox.style.position = "absolute";
+  failBox.style.top = "50%";
+  failBox.style.left = "50%";
+  failBox.style.transform = "translate(-50%, -50%)";
+  failBox.style.backgroundColor = "#fff";
+  failBox.style.padding = "20px";
+  failBox.style.borderRadius = "8px";
+  failBox.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+}
+
+function resetDropArea() {
+  drop_area.innerHTML = "";
+  drop_area.textContent = "Drop ingredients on this table, as fast as possible in the correct order";
 }
