@@ -36,15 +36,26 @@ function goToGame() {
 }
 
 function goToCook() {
+  document.getElementById("tutorial-section").style.display = "none";
   document.getElementById("homePage").style.display = "none";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "block";
 }
 
 function goToHome() {
+  document.getElementById("tutorial-section").style.display = "none";
   document.getElementById("homePage").style.display = "block";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
+}
+
+function showTutor() {
+  tutorSection = document.getElementById("tutorial-section");
+  if(tutorSection.style.display === "none") {
+    tutorSection.style.display = "block";
+  } else {
+    tutorSection.style.display = "none";
+  }
 }
 
 function openTutorial(videoName, titleText) {

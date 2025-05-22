@@ -5,6 +5,7 @@
   font-size: 25px;
   border-radius: 5px;
   padding: 0 5px 10px 5px;
+  z-index: 999;
 }
 
 #back-button:hover {
@@ -69,37 +70,47 @@
   background-color: #815b0a;
 }
 
+#answer-key-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 25px;
+  border-radius: 5px;
+  padding: 0 5px 10px 5px;
+  z-index: 999;
+}
+
 #tutorial-section {
-  margin: 30px auto;
+  display: none;
+  margin: 10px auto;
   padding: 10px 15px;
-  width: 70vw;
-  max-width: 900px;
+  width: 60vw;
   background-color: #fff7e6;
   border-radius: 12px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   text-align: center;
   transform: scale(0.95);
+  overflow: hidden;
 }
 
 #tutorial-section h2 {
-  font-size: 1.5vw;
-  margin-bottom: 15px;
+  font-size: 3vw;
   color: #b85d39;
   text-shadow: 1px 1px #fff597;
 }
 
 #video-thumbnails {
   display: flex;
-  overflow-x: auto;
-  gap: 15px;
+  max-height: 30vh;
+  overflow: auto;
   padding: 5px;
-  scroll-snap-type: x mandatory;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .video-thumb {
   flex: 0 0 auto;
-  width: 130px;
+  width: auto;
   scroll-snap-align: start;
   background-color: white;
   padding: 8px;
@@ -114,7 +125,7 @@
 }
 
 .video-thumb img {
-  width: 100%;
+  width: 65px;
   height: auto; 
   object-fit: contain; 
   border-radius: 8px;
@@ -128,8 +139,7 @@
   font-weight: bold;
 }
 
-
-#video-thumbnails::-webkit-scrollbar {
+/* #video-thumbnails::-webkit-scrollbar {
   height: 8px;
 }
 
@@ -141,7 +151,7 @@
 #video-thumbnails::-webkit-scrollbar-thumb {
   background: #b85d39;
   border-radius: 10px;
-}
+} */
 
 .modal {
   position: fixed;
@@ -188,6 +198,7 @@
   font-weight: bold;
   color: #b85d39;
   cursor: pointer;
+  z-index: 999;
 }
 
 .close-btn:hover {
