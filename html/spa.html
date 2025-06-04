@@ -80,18 +80,18 @@
 
         <h2 id="recipe-title"></h1>
 
-           <!-- Character reacts -->
-   <img id="game-character" 
-        src="../assets/Character_all/Gembira.png" 
-        alt="Character Reaction"
-        style="width: 100px; transition: transform 0.3s;" />
-
         <img id="recipe-img" src="" alt="Recipe Image">
 
-        <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-          Drop ingredients on this table, as fast as possible in the correct order
-        </div>
-        
+        <!-- Character above drop area -->
+<div class="drop-wrapper">
+  <div class="drop-container">
+    <img id="game-character" src="../assets/Character_all/Gembira.png" alt="Character Reaction" />
+    <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
+      Drop ingredients on this table, as fast as possible in the correct order
+    </div>
+  </div>
+</div>
+
         <!-- Timer -->
         <div id="game-info">
           <img id="timer-img" src="../assets/timer.png">

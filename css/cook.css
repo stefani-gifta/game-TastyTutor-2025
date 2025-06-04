@@ -179,6 +179,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 250px;
+  z-index: 100; /* on top of the chara */
 }
 
 #done-message-box p {
@@ -245,4 +246,24 @@
       translateY(calc(-1 * var(--distance) * sin(var(--angle))));
     opacity: 0;
   }
+}
+
+.drop-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.drop-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+#game-character {
+  position: absolute;
+  top: -110px;    /* Naik ke atas drop area */
+  left: -10px;   /* Geser ke kiri dari ujung drop area */
+  width: 100px;
+  z-index: 10;
 }
