@@ -197,7 +197,7 @@
   font-size: 30px;
   font-weight: bold;
   color: #b85d39;
-  cursor: pointer;
+  cursor: url('../assets/cursors/hand_point.png'), pointer;
   z-index: 999;
 }
 
