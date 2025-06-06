@@ -237,7 +237,7 @@ function drop(ev) {
       char.src = "../assets/Character_all/Buncit.png";
       char.classList.add("full-belly");
     } else {
-      char.src = "../assets/Character_all/Gembira.png";
+      char.src = "../assets/Character_all/GoodJob.png";
     }
 
     stopTicking();
