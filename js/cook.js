@@ -45,6 +45,7 @@ function emojiConfettiByMode(mode) {
 }
 
 function goToGame() {
+  deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
   document.getElementById("homePage").style.display = "none";
@@ -53,11 +54,16 @@ function goToGame() {
 }
 
 function goToHome() {
+  deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
   document.getElementById("homePage").style.display = "block";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
+}
+
+function deleteMessageElement() {
+  var msg_box = document.getElementById("done-message-box") ? document.getElementById("done-message-box").remove() : console.log("No message box");
 }
 
 const ingredients = {
@@ -78,6 +84,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function showCookingPage(recipe) {
+  resetDropArea();
   clearInterval(timerInterval);
   timeLeft = 60;
   timeScore = 70;
@@ -245,6 +252,7 @@ function showFailMessage() {
 }
 
 function resetDropArea() {
+  console.log("Drop area resetted");
   drop_area.innerHTML = "";
   drop_area.textContent = "Drop ingredients on this table, as fast as possible in the correct order";
 }
