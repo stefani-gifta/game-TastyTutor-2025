@@ -45,6 +45,8 @@ function emojiConfettiByMode(mode) {
 }
 
 function goToGame() {
+  hideAnswerKey();
+  deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
   document.getElementById("homePage").style.display = "none";
@@ -53,11 +55,64 @@ function goToGame() {
 }
 
 function goToHome() {
+  hideAnswerKey();
+  deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
   document.getElementById("homePage").style.display = "block";
   document.getElementById("gamePage").style.display = "none";
   document.getElementById("cookPage").style.display = "none";
+}
+
+function goToCook() {
+  hideAnswerKey();
+  deleteMessageElement();
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "block";
+}
+
+function deleteMessageElement() {
+  document.getElementById("done-message-box") ? document.getElementById("done-message-box").remove() : console.log("No message box");
+}
+
+function showTutor() {
+  tutorSection = document.getElementById("tutorial-section");
+  if(tutorSection.style.display === "none") {
+    tutorSection.style.display = "block";
+  } else {
+    tutorSection.style.display = "none";
+  }
+}
+
+function openTutorial(videoName, titleText) {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  const source = document.getElementById("videoSource");
+  const title = document.getElementById("videoTitle");
+
+  source.src = `../assets/${videoName}.mp4`;
+  video.load();
+  title.textContent = titleText;
+
+  modal.style.display = "flex";
+  video.play();
+}
+
+function closeTutorial() {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+}
+
+function hideAnswerKey() {
+  var element_display = document.getElementById("tutorial-section");
+  if(element_display.style.display === "block") {
+    console.log("Hiding answer key");
+    element_display.style.display = "none";
+  }
 }
 
 const ingredients = {
@@ -78,6 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function showCookingPage(recipe) {
+  resetDropArea();
   clearInterval(timerInterval);
   timeLeft = 60;
   timeScore = 70;
@@ -181,7 +237,7 @@ function drop(ev) {
       char.src = "../assets/Character_all/Buncit.png";
       char.classList.add("full-belly");
     } else {
-      char.src = "../assets/Character_all/Gembira.png";
+      char.src = "../assets/Character_all/GoodJob.png";
     }
 
     stopTicking();
@@ -245,6 +301,7 @@ function showFailMessage() {
 }
 
 function resetDropArea() {
+  console.log("Drop area resetted");
   drop_area.innerHTML = "";
   drop_area.textContent = "Drop ingredients on this table, as fast as possible in the correct order";
 }
