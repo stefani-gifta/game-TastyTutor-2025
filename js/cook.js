@@ -45,6 +45,7 @@ function emojiConfettiByMode(mode) {
 }
 
 function goToGame() {
+  hideAnswerKey();
   deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
@@ -54,6 +55,7 @@ function goToGame() {
 }
 
 function goToHome() {
+  hideAnswerKey();
   deleteMessageElement();
   clearInterval(timerInterval);
   stopTicking();
@@ -62,8 +64,55 @@ function goToHome() {
   document.getElementById("cookPage").style.display = "none";
 }
 
+function goToCook() {
+  hideAnswerKey();
+  deleteMessageElement();
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("gamePage").style.display = "none";
+  document.getElementById("cookPage").style.display = "block";
+}
+
 function deleteMessageElement() {
-  var msg_box = document.getElementById("done-message-box") ? document.getElementById("done-message-box").remove() : console.log("No message box");
+  document.getElementById("done-message-box") ? document.getElementById("done-message-box").remove() : console.log("No message box");
+}
+
+function showTutor() {
+  tutorSection = document.getElementById("tutorial-section");
+  if(tutorSection.style.display === "none") {
+    tutorSection.style.display = "block";
+  } else {
+    tutorSection.style.display = "none";
+  }
+}
+
+function openTutorial(videoName, titleText) {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  const source = document.getElementById("videoSource");
+  const title = document.getElementById("videoTitle");
+
+  source.src = `../assets/${videoName}.mp4`;
+  video.load();
+  title.textContent = titleText;
+
+  modal.style.display = "flex";
+  video.play();
+}
+
+function closeTutorial() {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("tutorialVideo");
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+}
+
+function hideAnswerKey() {
+  var element_display = document.getElementById("tutorial-section");
+  if(element_display.style.display === "block") {
+    console.log("Hiding answer key");
+    element_display.style.display = "none";
+  }
 }
 
 const ingredients = {
