@@ -244,7 +244,8 @@ function drop(ev) {
       document.getElementById("character-shadow").style.animation = "none";
     } else {
       char.src = "../assets/Character_all/GoodJob.png";
-      document.getElementById("character-shadow").style.animation = "none";
+      char.style.animation = "charaJumping 1s ease-out infinite";
+      document.getElementById("character-shadow").style.animation = "shadowJumping 1s ease-out infinite";
     }
 
     stopTicking();
