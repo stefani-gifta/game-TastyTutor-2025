@@ -85,7 +85,10 @@
         <!-- Character above drop area -->
 <div class="drop-wrapper">
   <div class="drop-container">
-    <img id="game-character" src="../assets/Character_all/Gembira.png" alt="Character Reaction" />
+    <div class="character-wrapper">
+      <img id="game-character" src="../assets/Character_all/Gembira.png" alt="Character Reaction" />
+      <div id="character-shadow"></div>
+    </div>
     <div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
       Drop ingredients on this table, as fast as possible in the correct order
     </div>

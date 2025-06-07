@@ -145,6 +145,7 @@ function showCookingPage(recipe) {
   var char = document.getElementById("game-character");
   char.src = "../assets/Character_all/Gembira.png";
   char.style.animation = "charaJumping 1s ease-out infinite";
+  document.getElementById("character-shadow").style.animation = "shadowJumping 1s ease-out infinite";
 
   timerInterval = setInterval(() => {
     timerSoundTicking.play();
@@ -152,6 +153,7 @@ function showCookingPage(recipe) {
     if (timeLeft < 15) {
       document.getElementById("game-character").src = "../assets/Character_all/Panik.png";
       document.getElementById("game-character").style.animation = "panicShake 1s ease-out infinite";
+      document.getElementById("character-shadow").style.animation = "panicShake 1s ease-out infinite";
     }
     if (timeLeft < 50) {
       timeScore = Math.max(0, Math.floor((timeLeft / 50) * 70));
@@ -239,8 +241,10 @@ function drop(ev) {
     if (score === 100) {
       char.src = "../assets/Character_all/Buncit.png";
       char.style.animation = "none";
+      document.getElementById("character-shadow").style.animation = "none";
     } else {
       char.src = "../assets/Character_all/GoodJob.png";
+      document.getElementById("character-shadow").style.animation = "none";
     }
 
     stopTicking();
@@ -289,6 +293,7 @@ function showFailMessage() {
   };
   document.getElementById("game-character").src = "../assets/Character_all/Sedih.png";
   document.getElementById("game-character").style.animation = "none";
+  document.getElementById("character-shadow").style.animation = "none";
   failBox.appendChild(message);
   failBox.appendChild(tryAgainBtn);
   document.body.appendChild(failBox);
